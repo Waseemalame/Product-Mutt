@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const apiRouter = require('./api');
 
+const { Post } = require('../db/models')
 router.use('/api', apiRouter);
 
 if (process.env.NODE_ENV === 'production') {
