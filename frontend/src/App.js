@@ -5,6 +5,8 @@ import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
+import PostBrowser from "./components/PostBrowser";
+import CreatePostForm from "./components/CreatePostForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,6 +26,8 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <PostBrowser />
+
         </Switch>
       )}
     </>
