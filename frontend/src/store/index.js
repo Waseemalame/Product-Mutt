@@ -2,10 +2,12 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { restoreCSRF, csrfFetch } from './csrf';
 import sessionReducer from './session';
+import posts from './posts';
 import * as sessionActions from './session';
 
 const rootReducer = combineReducers({
-  session: sessionReducer
+  session: sessionReducer,
+  posts
 });
 
 let enhancer;
