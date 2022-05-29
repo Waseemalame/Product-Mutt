@@ -28,9 +28,9 @@ const PostBrowser = () => {
 
   return(
     <div className='main'>
-      {/* <ul>
+      <ul>
         <CreatePostForm />
-      </ul> */}
+      </ul>
       <Route path="/">
           <PostList />
       </Route>
