@@ -3,7 +3,6 @@ import './PostList.css'
 
 const PostList = () => {
   const posts = useSelector(state => state.posts.list);
-  console.log(posts, 'posts from PostList.js')
 
 
   return (
