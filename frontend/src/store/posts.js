@@ -1,22 +1,43 @@
-const LOAD = "pokemon/LOAD";
+import { csrfFetch, restoreCSRF } from "./csrf";
 
+const LOAD = "posts/LOAD";
+const ADD = "posts/ADD"
 const load = (list) => ({
   type: LOAD,
   list,
 });
 
-export const getPosts = () => async (dispatch) => {
-  const response = await fetch(`http://localhost:5000/api/posts`);
+const addOnePost = (post) => {
+  console.log('IN ADD_ONE_POST ACTION - POST -> ', post)
+  return {
+    type: ADD,
+    post: post,
+  };
+}
 
-  console.log('hihihi', response)
-  console.log('safiuhasdfhsdkjfahsd')
+export const getPosts = () => async (dispatch) => {
+  const response = await fetch(`/api/posts`);
+
 
   if (response.ok) {
-    console.log('REPONSE IS OKAY HERE')
+
     const list = await response.json();
     dispatch(load(list));
   }
 };
+
+export const createPost = (data) => async (dispatch) => {
+
+  const response = await csrfFetch('/api/posts', {
+    method: 'POST',
+    body: JSON.stringify(data)
+  });
+  const newPost = await response.json()
+  return newPost
+  }
+
+    // .then(res => res.json()).then(data => console.log(data, 'data'))
+  // console.log('response', response)
 
 const initialState = {
   list: []
@@ -25,15 +46,22 @@ const initialState = {
 const postReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD:
+      console.log(action.list)
       const allPosts = {};
-      console.log(action.list, 'action.list')
       action.list.forEach((post) => {
         allPosts[post.id] = post;
       });
       return {
         ...state,
-        list: action.list,
+        ...allPosts
       };
+    case ADD:
+      console.log('WE IN THE REDUCER NOW')
+      console.log(action, 'action here in reducer')
+      return {
+        ...state,
+
+      }
 
     default:
       return state;
