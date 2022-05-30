@@ -14,12 +14,10 @@ const PostBrowser = () => {
   // const posts = useSelector(state => {
   //   console.log(state.posts, 'typeof state.posts')
   // });
-  const posts = useSelector(state => {
-    return state.posts.list.map(postId => postId)
-  });
-  console.log(posts, 'POSTPOSTSPOTPOST')
+  // const posts = useSelector(state => {
+  //   return state.posts.list.map(postId => postId)
+  // });
 
-  console.log('hidfhsi')
   useEffect(() => {
 
     dispatch(getPosts())
