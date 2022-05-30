@@ -9,20 +9,13 @@ import PostList from '../PostList';
 
 const PostBrowser = () => {
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  // const posts = useSelector(state => {
-  //   console.log(state.posts, 'typeof state.posts')
-  // });
-  // const posts = useSelector(state => {
-  //   return state.posts.list.map(postId => postId)
-  // });
+  // useEffect(() => {
 
-  useEffect(() => {
+  //   dispatch(getPosts())
 
-    dispatch(getPosts())
-
-  }, [dispatch]);
+  // }, [dispatch]);
 
   return(
     <div className='main'>
