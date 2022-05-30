@@ -1,5 +1,5 @@
 import { csrfFetch, restoreCSRF } from "./csrf";
-
+import { ValidationError } from "../utils/validationError";
 const LOAD = "posts/LOAD";
 const ADD = "posts/ADD"
 const load = (list) => ({
@@ -22,22 +22,48 @@ export const getPosts = () => async (dispatch) => {
   if (response.ok) {
 
     const list = await response.json();
+    // Data from backend, into regular action
     dispatch(load(list));
   }
 };
 
 export const createPost = (data) => async (dispatch) => {
+try {
 
   const response = await csrfFetch('/api/posts', {
     method: 'POST',
     body: JSON.stringify(data)
   });
-  const newPost = await response.json()
-  return newPost
+    if(!response.ok){
+      let error;
+      if (response.status === 422) {
+        error = await response.json();
+        throw new ValidationError(error.errors, response.statusText);
+      } else {
+
+        let errorJSON;
+        error = await response.text();
+        try {
+          // Check if the error is JSON, i.e., from the Posts server. If so,
+          // don't throw error yet or it will be caught by the following catch
+          errorJSON = JSON.parse(error);
+        } catch {
+          // Case if server could not be reached
+          throw new Error(error);
+        }
+        throw new Error(`${errorJSON.title}: ${errorJSON.message}`);
+      }
+    }
+
+    const newPost = await response.json()
+    dispatch(addOnePost(newPost))
+    return newPost
+  } catch (error) {
+    throw error;
   }
 
-    // .then(res => res.json()).then(data => console.log(data, 'data'))
-  // console.log('response', response)
+}
+
 
 const initialState = {
   list: []
@@ -46,24 +72,40 @@ const initialState = {
 const postReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD:
-      console.log(action.list)
       const allPosts = {};
       action.list.forEach((post) => {
         allPosts[post.id] = post;
       });
       return {
-        ...state,
+        // ...state,
         ...allPosts
       };
     case ADD:
-      console.log('WE IN THE REDUCER NOW')
-      console.log(action, 'action here in reducer')
+      console.log('IN REDUCER ADD ONE CASE - ACTION -> ', action);
+      console.log(state, 'state')
+      console.log(action.post.id, 'action.post.id')
+      if (!state[action.post.id]) {
+        console.log('NOT state[action.post.id]')
+        const newState = {
+          ...state,
+          [action.post.id]: action.post,
+        };
+        // const postList = newState.list.map((id) => newState[id]);
+        // postList.push(action.post);
+        // newState.list = postList;
+        // newState.list = postList;
+        return newState;
+      }
+      console.log('wait up now!!')
       return {
         ...state,
+        // [action.post.id]: {
+          //   ...state[action.post.id],
+        ...action.post,
+          // },
+        };
 
-      }
-
-    default:
+        default:
       return state;
   }
 };
