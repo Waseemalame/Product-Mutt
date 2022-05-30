@@ -1,8 +1,18 @@
-import { useSelector, useStore } from "react-redux"
+import { useDispatch, useSelector, useStore } from "react-redux"
+import { useEffect } from "react";
+import { getPosts } from "../../store/posts";
 import './PostList.css'
 
 const PostList = () => {
-  const posts = useSelector(state => state.posts.list);
+  const dispatch = useDispatch();
+  const posts = useSelector(state => Object.values(state.posts));
+  const userId = useSelector(state => state.session.user.id)
+  console.log(userId, 'userId !!!')
+  useEffect(() => {
+
+    dispatch(getPosts())
+
+  }, [dispatch]);
 
 
   return (
@@ -18,6 +28,13 @@ const PostList = () => {
             <div className="post-details">
             <p>{post.title}</p>
             <p className="post-content">{post.content}</p>
+            {userId === post.userId &&
+            <div>
+            <button>edit</button>
+            <button>delete</button>
+            </div>
+            }
+            <button>Reply</button>
             </div>
 
           </li>
