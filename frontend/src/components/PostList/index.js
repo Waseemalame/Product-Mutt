@@ -1,13 +1,19 @@
 import { useDispatch, useSelector, useStore } from "react-redux"
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getPosts } from "../../store/posts";
+import { NavLink, Route } from 'react-router-dom'
+import { updatePost } from "../../store/posts";
+import EditPostForm from "../EditPostForm";
+import Popup from "../Popup";
 import './PostList.css'
 
 const PostList = () => {
   const dispatch = useDispatch();
   const posts = useSelector(state => Object.values(state.posts));
   const userId = useSelector(state => state.session.user.id)
-  console.log(userId, 'userId !!!')
+
+  const [buttonPopup, setButtonPopup] = useState(false)
+
   useEffect(() => {
 
     dispatch(getPosts())
@@ -22,23 +28,26 @@ const PostList = () => {
     <div className="postlist-header">Your next favorite thing 👇</div>
     {posts.map((post) => {
       return (
-        <ul>
-          <li key={post.id} className="post">
+          <NavLink key={post.id} to={`/api/posts/${post.id}`} className="post">
             <img className="post-img" src={post.media} alt="img" />
             <div className="post-details">
             <p>{post.title}</p>
             <p className="post-content">{post.content}</p>
             {userId === post.userId &&
             <div>
-            <button>edit</button>
+            <button onClick={(e) => setButtonPopup(true)}>edit</button>
+            <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+              <h3>My Popup</h3>
+              <p>This is my button triggered popup</p>
+              <EditPostForm />
+            </Popup>
             <button>delete</button>
             </div>
             }
             <button>Reply</button>
             </div>
 
-          </li>
-        </ul>
+          </NavLink>
       );
     })}
     </div>
