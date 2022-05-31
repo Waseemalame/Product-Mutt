@@ -16,12 +16,14 @@ module.exports = {
       userId: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        references: {model: 'Users'}
+        references: {model: 'Users'},
       },
       postId: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        references: {model: 'Posts'}
+        references: {model: 'Posts'},
+        onDelete: 'cascade',
+        hooks: true
       },
       createdAt: {
         allowNull: false,

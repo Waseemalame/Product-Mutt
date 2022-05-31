@@ -18,6 +18,18 @@ module.exports = {
         allowNull: false,
         unique: true
       },
+      credentials: {
+        type: Sequelize.STRING(256),
+      },
+      instagram: {
+        type: Sequelize.STRING(256),
+      },
+      website: {
+        type: Sequelize.STRING(256),
+      },
+      twitter: {
+        type: Sequelize.STRING(256),
+      },
       hashedPassword: {
         type: Sequelize.STRING.BINARY,
         allowNull: false

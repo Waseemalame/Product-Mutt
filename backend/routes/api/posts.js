@@ -7,6 +7,7 @@ const { Post } = require('../../db/models');
 
 const router = express.Router();
 
+/* GET posts */
 
 router.get('/', asyncHandler(async function(_req, res) {
 
@@ -16,7 +17,7 @@ router.get('/', asyncHandler(async function(_req, res) {
   return res.json(posts);
 
 }));
-
+ /* POST posts/:id */
 router.post('/', requireAuth, asyncHandler(async function (req, res) {
 
   console.log('BACKEND POST')
@@ -32,6 +33,18 @@ router.post('/', requireAuth, asyncHandler(async function (req, res) {
     return res.json(post);
     })
   );
+  /* POST comments */
+  // router.post('/:id/comments/:id', asyncHandler(async function(req, res){
+  //   console.log(req.body)
+
+  //   const comment = await Comment.create({
+
+  //   })
+
+  // }))
+
+
+  /* PUT posts/:id */
 router.put('/:id', requireAuth, asyncHandler(async function (req, res) {
 
     const {id} = req.params;
@@ -52,10 +65,21 @@ router.put('/:id', requireAuth, asyncHandler(async function (req, res) {
 
   router.delete('/:id', requireAuth, asyncHandler(async function (req, res) {
     const {id} = req.params;
-    const post = await Post.findByPk(id);
+    const post = await Post.findByPk();
     await post.destroy();
   })
   );
+
+  /* COMMENTS ROUTES */
+  // all Comments
+router.get('/:id/comments', asyncHandler(async function(_req, res) {
+
+  const comments = await Comment.findAll();
+  console.log(comments, 'comments-backend')
+  return res.json(comments)
+}))
+
+
 
   module.exports = router;
 

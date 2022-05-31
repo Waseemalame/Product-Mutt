@@ -23,6 +23,18 @@ module.exports = (sequelize, DataTypes) => {
         len: [3, 256]
       }
     },
+    credentials: {
+      type: DataTypes.STRING,
+    },
+    instagram: {
+      type: DataTypes.STRING,
+    },
+    website: {
+      type: DataTypes.STRING,
+    },
+    twitter: {
+      type: DataTypes.STRING,
+    },
     hashedPassword: {
       type: DataTypes.STRING.BINARY,
       allowNull: false,

@@ -10,7 +10,13 @@ import './PostList.css'
 const PostList = () => {
   const dispatch = useDispatch();
   const posts = useSelector(state => Object.values(state.posts));
-  const userId = useSelector(state => state.session.user.id)
+  const userId = useSelector(state => {
+    if(state.session.user){
+
+      return state.session.user.id
+
+    }
+  })
 
   const [buttonPopup, setButtonPopup] = useState(false)
 

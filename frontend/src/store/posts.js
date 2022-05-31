@@ -2,6 +2,7 @@ import { csrfFetch, restoreCSRF } from "./csrf";
 import { ValidationError } from "../utils/validationError";
 const LOAD = "posts/LOAD";
 const ADD = "posts/ADD"
+const DELETE = "posts/:id/DELETE"
 const load = (list) => ({
   type: LOAD,
   list,
@@ -13,6 +14,11 @@ const addOnePost = (post) => {
     type: ADD,
     post: post,
   };
+}
+const deleteOnePost = () => {
+  return {
+    type: DELETE,
+  }
 }
 
 export const getPosts = () => async (dispatch) => {
@@ -80,6 +86,23 @@ export const updatePost = (data) => async (dispatch) => {
   }
 
 }
+// export const deletePost = (data) => async (dispatch) => {
+//   console.log(data)
+//   const response = await csrfFetch(`/api/posts/${data.id}`, {
+//     method: "delete",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(data),
+//   });
+
+//   if (response.ok) {
+//     const post = await response.json();
+//     dispatch(OnePost(post));
+//     return post;
+//   }
+
+// }
 
 
 const initialState = {

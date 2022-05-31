@@ -9,6 +9,10 @@ function SignupFormPage() {
   const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
+  const [instagram, setInstagram] = useState('');
+  const [twitter, setTwitter] = useState('');
+  const [website, setWebsite] = useState('');
+  const [credentials, setCredentials] = useState('');
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -48,6 +52,42 @@ function SignupFormPage() {
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          required
+        />
+      </label>
+      <label>
+        Credentials
+        <input
+          type="text"
+          value={credentials}
+          onChange={(e) => setCredentials(e.target.value)}
+          required
+        />
+      </label>
+      <label>
+        Twitter Url
+        <input
+          type="text"
+          value={twitter}
+          onChange={(e) => setTwitter(e.target.value)}
+          required
+        />
+      </label>
+      <label>
+        Instagram Url
+        <input
+          type="text"
+          value={instagram}
+          onChange={(e) => setInstagram(e.target.value)}
+          required
+        />
+      </label>
+      <label>
+        Website Url
+        <input
+          type="text"
+          value={website}
+          onChange={(e) => setWebsite(e.target.value)}
           required
         />
       </label>
