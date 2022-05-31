@@ -50,6 +50,13 @@ router.put('/:id', requireAuth, asyncHandler(async function (req, res) {
     })
   );
 
+  router.delete('/:id', requireAuth, asyncHandler(async function (req, res) {
+    const {id} = req.params;
+    const post = await Post.findByPk(id);
+    await post.destroy();
+  })
+  );
+
   module.exports = router;
 
   // const id = await PokemonRepository.create(req.body);S
