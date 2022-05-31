@@ -32,6 +32,23 @@ router.post('/', requireAuth, asyncHandler(async function (req, res) {
     return res.json(post);
     })
   );
+router.put('/:id', requireAuth, asyncHandler(async function (req, res) {
+
+    const {id} = req.params;
+
+    req.body.userId = id;
+    const {title, content, media, userId} = req.body;
+
+    const post = await Post.findByPk(id);
+    post.update({
+      title,
+      content,
+      media,
+      userId
+    })
+    return res.json(post);
+    })
+  );
 
   module.exports = router;
 
