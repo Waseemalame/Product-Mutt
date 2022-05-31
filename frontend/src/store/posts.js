@@ -63,6 +63,23 @@ try {
   }
 
 }
+export const updatePost = (data) => async (dispatch) => {
+  console.log(data)
+  const response = await csrfFetch(`/api/posts/${data.id}`, {
+    method: "put",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (response.ok) {
+    const post = await response.json();
+    dispatch(addOnePost(post));
+    return post;
+  }
+
+}
 
 
 const initialState = {
@@ -96,7 +113,6 @@ const postReducer = (state = initialState, action) => {
         // newState.list = postList;
         return newState;
       }
-      console.log('wait up now!!')
       return {
         ...state,
         // [action.post.id]: {

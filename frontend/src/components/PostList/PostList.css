@@ -10,6 +10,7 @@
   /* margin-left: 100px; */
   align-items: center;
   margin: 20px;
+  text-decoration: none;
 }
 
 .postlist-header{
@@ -29,3 +30,7 @@
 .post-details{
   margin-bottom: 40px;
 }
+/* .post-content{
+  text-decoration: none;
+  list-style: none;
+} */
