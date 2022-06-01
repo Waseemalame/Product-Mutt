@@ -7,6 +7,8 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import PostBrowser from "./components/PostBrowser";
 import CreatePostForm from "./components/CreatePostForm";
+import PostDetails from "./components/PostDetails";
+import PostList from "./components/PostList";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,9 +29,14 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <PostBrowser />
         </Switch>
       )}
+      {/* <PostBrowser /> */}
+      {/* <PostDetails /> */}
+      <PostList />
+
+      {/* <HiComponent /> */}
+
     </>
   );
 }
