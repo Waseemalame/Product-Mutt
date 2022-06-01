@@ -38,7 +38,7 @@ router.get('/:id/comments', asyncHandler(async function(req, res) {
     }
   });
   console.log(comments)
-  return res.json(items);
+  return res.json(comments);
 }));
 
 router.post('/', requireAuth, asyncHandler(async function (req, res) {
