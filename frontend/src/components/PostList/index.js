@@ -1,13 +1,15 @@
 import { useDispatch, useSelector, useStore } from "react-redux"
 import { useEffect, useState } from "react";
 import { getPosts } from "../../store/posts";
-import { NavLink, Route } from 'react-router-dom'
+import { NavLink, Route, useHistory } from 'react-router-dom'
+
 import { updatePost } from "../../store/posts";
 import EditPostForm from "../EditPostForm";
 import './PostList.css'
 import PostDetails from "../PostDetails";
 
 const PostList = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const posts = useSelector(state => Object.values(state.posts));
   const userId = useSelector(state => {
@@ -57,11 +59,14 @@ const PostList = () => {
       <Route path="/api/posts/:id">
               <PostDetails />
             </Route>
-    ) : ''
+    ) : null
 
   }
   {
-    formOpen ? <button className="close-btn" onClick={() => setFormOpen(false)}>close</button> : ''
+    formOpen ? <button className="close-btn" onClick={() => {
+
+      return setFormOpen(false)
+    }}>close</button> : history.push('/api/posts')
   }
     </div>
     </>

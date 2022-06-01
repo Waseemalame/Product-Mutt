@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import * as sessionActions from "../../store/session"
 import { updatePost } from '../../store/posts';
+import { useHistory, useParams } from 'react-router-dom';
 const EditPostForm = () => {
+  const history = useHistory();
+  const {id} = useParams();
   const dispatch = useDispatch();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -25,29 +28,20 @@ const EditPostForm = () => {
   }
   const userId = sessionUser.id
 
-
   const handleSubmit = async (e) => {
-    e.stopPropogation();
-    console.log('anything')
-    console.log('anything')
-    console.log('anything')
-    console.log('anything')
+
+
     e.preventDefault();
 
     const data = {
       title,
       content,
       media,
-      // userId
+      id
     }
 
     const updatedPost = await dispatch(updatePost(data))
     console.log(updatedPost)
-    console.log('anything')
-    console.log('anything')
-    console.log('anything')
-    console.log('anything')
-    console.log('anything')
 
   }
   return(
