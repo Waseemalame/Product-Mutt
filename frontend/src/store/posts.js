@@ -2,6 +2,7 @@ import { csrfFetch, restoreCSRF } from "./csrf";
 import { ValidationError } from "../utils/validationError";
 const LOAD = "posts/LOAD";
 const ADD = "posts/ADD"
+const GET_ONE_POST = "posts/:id"
 const load = (list) => ({
   type: LOAD,
   list,
@@ -14,6 +15,16 @@ const addOnePost = (post) => {
     post: post,
   };
 }
+
+export const getPostDetails = (id) => async dispatch => {
+
+  const response = await fetch(`/api/posts/${id}`);
+
+  if (response.ok) {
+    const post = await response.json();
+    dispatch(addOnePost(post));
+  }
+};
 
 export const getPosts = () => async (dispatch) => {
   const response = await fetch(`/api/posts`);
