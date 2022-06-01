@@ -29,10 +29,13 @@ const PostList = () => {
     <div className="postlist-header">Your next favorite thing 👇</div>
     {posts.map((post) => {
       return (
-          <NavLink key={post.id} to={`/api/posts/${post.id}`} className="post">
+        <>
+          {/*  */}
+            <div className="post">
             <img className="post-img" src={post.media} alt="img" />
             <div className="post-details">
-            <p>{post.title}</p>
+            {/* <p>{post.title}</p> */}
+            <NavLink key={post.id} to={`/api/posts/${post.id}`} className="post">{post.title}</NavLink>
             <p className="post-content">{post.content}</p>
             {userId === post.userId &&
             <div>
@@ -41,8 +44,10 @@ const PostList = () => {
             }
             <button>Reply</button>
             </div>
+            </div>
 
-          </NavLink>
+          {/* </NavLink> */}
+          </>
       );
     })}
     </div>

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPosts } from '../../store/posts';
 import CreatePostForm from '../CreatePostForm/index';
+import EditPostForm from '../EditPostForm';
 import { NavLink, Route, useParams } from 'react-router-dom';
 
 import PostList from '../PostList';
@@ -21,6 +22,7 @@ const PostBrowser = () => {
     <div className='main'>
       <ul>
         <CreatePostForm />
+        <EditPostForm />
       </ul>
       <Route path="/">
           <PostList />
