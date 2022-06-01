@@ -2,18 +2,29 @@ import { csrfFetch, restoreCSRF } from "./csrf";
 import { ValidationError } from "../utils/validationError";
 const LOAD = "posts/LOAD";
 const ADD = "posts/ADD"
+const GET_ONE_POST = "posts/:id"
 const load = (list) => ({
   type: LOAD,
   list,
 });
 
 const addOnePost = (post) => {
-  console.log('IN ADD_ONE_POST ACTION - POST -> ', post)
+  // console.log('IN ADD_ONE_POST ACTION - POST -> ', post)
   return {
     type: ADD,
     post: post,
   };
 }
+
+export const getPostDetails = (id) => async dispatch => {
+
+  const response = await fetch(`/api/posts/${id}`);
+
+  if (response.ok) {
+    const post = await response.json();
+    dispatch(addOnePost(post));
+  }
+};
 
 export const getPosts = () => async (dispatch) => {
   const response = await fetch(`/api/posts`);
@@ -99,26 +110,25 @@ const postReducer = (state = initialState, action) => {
       };
     case ADD:
       console.log('IN REDUCER ADD ONE CASE - ACTION -> ', action);
-      console.log(state, 'state')
-      console.log(action.post.id, 'action.post.id')
+      // console.log(state, 'state')
+      // console.log(action.post.id, 'action.post.id')
       if (!state[action.post.id]) {
         console.log('NOT state[action.post.id]')
         const newState = {
           ...state,
           [action.post.id]: action.post,
         };
-        // const postList = newState.list.map((id) => newState[id]);
-        // postList.push(action.post);
-        // newState.list = postList;
-        // newState.list = postList;
+        const postList = newState.list.map((id) => newState[id]);
+        postList.push(action.post);
+        newState.list = postList;
         return newState;
       }
       return {
         ...state,
-        // [action.post.id]: {
-          //   ...state[action.post.id],
+        [action.post.id]: {
+            ...state[action.post.id],
         ...action.post,
-          // },
+          },
         };
 
         default:

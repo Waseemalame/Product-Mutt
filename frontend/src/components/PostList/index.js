@@ -5,6 +5,7 @@ import { NavLink, Route } from 'react-router-dom'
 import { updatePost } from "../../store/posts";
 import EditPostForm from "../EditPostForm";
 import './PostList.css'
+import PostDetails from "../PostDetails";
 
 const PostList = () => {
   const dispatch = useDispatch();
@@ -50,6 +51,9 @@ const PostList = () => {
           </>
       );
     })}
+            <Route path="/api/posts/:id">
+              <PostDetails />
+            </Route>
     </div>
     </>
   )
