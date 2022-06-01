@@ -15,6 +15,7 @@ const PostList = () => {
       return state.session.user.id
     }
   })
+  const [formOpen, setFormOpen] = useState(false)
 
   useEffect(() => {
 
@@ -36,7 +37,7 @@ const PostList = () => {
             <img className="post-img" src={post.media} alt="img" />
             <div className="post-details">
             {/* <p>{post.title}</p> */}
-            <NavLink key={post.id} to={`/api/posts/${post.id}`} className="post">{post.title}</NavLink>
+            <NavLink key={post.id} to={`/api/posts/${post.id}`} onClick={() => setFormOpen(true)} className="post">{post.title} </NavLink>
             <p className="post-content">{post.content}</p>
             {userId === post.userId &&
             <div>
@@ -51,9 +52,17 @@ const PostList = () => {
           </>
       );
     })}
-            <Route path="/api/posts/:id">
+    {formOpen ? (
+
+      <Route path="/api/posts/:id">
               <PostDetails />
             </Route>
+    ) : ''
+
+  }
+  {
+    formOpen ? <button className="close-btn" onClick={() => setFormOpen(false)}>close</button> : ''
+  }
     </div>
     </>
   )

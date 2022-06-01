@@ -35,3 +35,9 @@
   text-decoration: none;
   list-style: none;
 } */
+
+.close-btn{
+  position: fixed;
+  top: 100px;
+  left: 50px;
+}
