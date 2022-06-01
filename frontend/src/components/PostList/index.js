@@ -64,9 +64,10 @@ const PostList = () => {
   }
   {
     formOpen ? <button className="close-btn" onClick={() => {
-
-      return setFormOpen(false)
-    }}>close</button> : history.push('/api/posts')
+      history.push('/api/posts')
+      setFormOpen(false)
+      return
+    }}>close</button> : null
   }
     </div>
     </>
