@@ -5,7 +5,18 @@ module.exports = (sequelize, DataTypes) => {
     content: DataTypes.TEXT,
     media: DataTypes.TEXT,
     userId: DataTypes.INTEGER
-  }, {});
+  },
+  {
+    scopes: {
+      detailed: {
+        attributes: {
+          exclude: [
+            "hashedPassword"
+          ]
+        }
+      }
+    }
+  });
   Post.associate = function(models) {
     Post.belongsTo(models.User, { foreignKey: 'userId' });
     Post.hasMany(models.Comment, { foreignKey: 'commentId' });
