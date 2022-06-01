@@ -4,7 +4,6 @@ import { getPosts } from "../../store/posts";
 import { NavLink, Route } from 'react-router-dom'
 import { updatePost } from "../../store/posts";
 import EditPostForm from "../EditPostForm";
-import Popup from "../Popup";
 import './PostList.css'
 
 const PostList = () => {
@@ -15,8 +14,6 @@ const PostList = () => {
       return state.session.user.id
     }
   })
-
-  const [buttonPopup, setButtonPopup] = useState(false)
 
   useEffect(() => {
 
@@ -39,12 +36,6 @@ const PostList = () => {
             <p className="post-content">{post.content}</p>
             {userId === post.userId &&
             <div>
-            <button onClick={(e) => setButtonPopup(true)}>edit</button>
-            <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-              <h3>My Popup</h3>
-              <p>This is my button triggered popup</p>
-              <EditPostForm />
-            </Popup>
             <button>delete</button>
             </div>
             }

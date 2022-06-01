@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Popup from '../Popup';
 
 import * as sessionActions from "../../store/session"
 import { updatePost } from '../../store/posts';
