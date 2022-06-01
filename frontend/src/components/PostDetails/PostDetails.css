@@ -1,0 +1,27 @@
+.details-container{
+  position: fixed;
+  top: 100px;
+  /* margin: 0 auto; */
+  /* left: 50%; */
+  background-color: white;
+  z-index: 100;
+  width: 800px;
+  height: 300px;
+  border: 5px solid black;
+}
+
+.details-list{
+
+}
+.details-list li{
+  list-style: none;
+}
+.details-image{
+  width: 72px;
+  height: 72px;
+
+}
+.close-btn{
+  height: 40px;
+  width: 40px;
+}
