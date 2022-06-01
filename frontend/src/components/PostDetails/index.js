@@ -7,7 +7,6 @@ import Fab from '../Fab';
 import './PostDetails.css'
 
 
-
 const PostDetails = () => {
 
   const postId = useParams();
@@ -24,7 +23,7 @@ const PostDetails = () => {
   return (
     <>
       <div className='details-container'>
-      <button>Close</button>
+      {/* <button>Close</button> */}
 
           <ul className='details-list'>
             <li>
