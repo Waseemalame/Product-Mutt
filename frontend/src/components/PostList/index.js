@@ -4,15 +4,11 @@ import { getPosts } from "../../store/posts";
 import { NavLink, Route } from 'react-router-dom'
 import { updatePost } from "../../store/posts";
 import EditPostForm from "../EditPostForm";
-import Fab from "../Fab";
 import './PostList.css'
 import PostDetails from "../PostDetails";
 
 const PostList = () => {
-  const [showForm, setShowForm] = useState(false);
-
   const dispatch = useDispatch();
-
   const posts = useSelector(state => Object.values(state.posts));
   const userId = useSelector(state => {
     if(state.session.user){
@@ -32,7 +28,6 @@ const PostList = () => {
     <div className="postlist-container">
 
     <div className="postlist-header">Your next favorite thing 👇</div>
-    <Fab hidden={showForm} onClick={() => setShowForm(true)} />
     {posts.map((post) => {
       return (
         <>
@@ -51,15 +46,14 @@ const PostList = () => {
             <button>Reply</button>
             </div>
             </div>
-          {/* </NavLink> */}
-            {/* <PostDetails /> */}
-          <Route path="/posts/:postId">
-          <PostDetails/>
-          </Route>
 
+          {/* </NavLink> */}
           </>
       );
     })}
+            <Route path="/api/posts/:id">
+              <PostDetails />
+            </Route>
     </div>
     </>
   )
