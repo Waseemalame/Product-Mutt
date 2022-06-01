@@ -3,11 +3,11 @@ const asyncHandler = require('express-async-handler');
 const {requireAuth} = require('../../utils/auth')
 const postRepository = require('../../db/post-repository')
 
-const { Post } = require('../../db/models');
+const { Post, Comment } = require('../../db/models');
 
 const router = express.Router();
 
-
+  /* GET ALL POSTS */
 router.get('/', asyncHandler(async function(_req, res) {
 
 
@@ -17,6 +17,29 @@ router.get('/', asyncHandler(async function(_req, res) {
 
 }));
 
+  /* GET ONE POST */
+  router.get('/:id', asyncHandler(async function(req, res) {
+
+    const post = await postRepository.one(req.params.id)
+
+    return res.json(post);
+
+  }));
+
+
+/* GET Comments */
+router.get('/:id/comments', asyncHandler(async function(req, res) {
+
+  const post = await postRepository.one(req.params.id)
+  const postId = post.id
+  const comments = await Comment.findAll({
+    where: {
+      postId
+    }
+  });
+  console.log(comments)
+  return res.json(items);
+}));
 
 router.post('/', requireAuth, asyncHandler(async function (req, res) {
 
@@ -55,15 +78,6 @@ router.put('/:id', requireAuth, asyncHandler(async function (req, res) {
     return res.json(post);
     })
   );
-  /* GET ONE POST */
-router.get('/:id', asyncHandler(async function(req, res) {
-  // const {id} = req.params;
-
-  const post = await postRepository.one(req.params.id)
-
-  return res.json(post);
-
-}));
 
   router.delete('/:id', requireAuth, asyncHandler(async function (req, res) {
     const {id} = req.params;
@@ -72,9 +86,6 @@ router.get('/:id', asyncHandler(async function(req, res) {
   })
   );
 
-  module.exports = router;
 
-  // const id = await PokemonRepository.create(req.body);S
-  // console.log('BACKEND POKEMON POST AFTER ADD TO DB - id -> ', id);
-  // return res.redirect(`${req.baseUrl}/${id}`);
-  // const id = await PokemonRepository.create(req.body);
+
+  module.exports = router;
