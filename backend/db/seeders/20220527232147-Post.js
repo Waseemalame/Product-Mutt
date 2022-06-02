@@ -22,8 +22,8 @@ module.exports = {
   },
   {
     title: 'Airplane',
-    content: 'Test content here',
-    media: 'Quickly transform scripts, SQL, and more into internal tools',
+    content: 'Quickly transform scripts, SQL, and more into internal tools',
+    media: 'https://ph-files.imgix.net/9a381c04-a24c-4444-a1ff-0056f0f4a7a1.png',
     userId: 3,
     createdAt: new Date(),
     updatedAt: new Date()
