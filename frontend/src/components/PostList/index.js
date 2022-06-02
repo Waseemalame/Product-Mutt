@@ -42,11 +42,9 @@ const PostList = () => {
     {posts.map((post) => {
       return (
         <>
-          {/*  */}
             <div className="post">
             <img className="post-img" src={post.media} alt="img" />
             <div className="post-details">
-            {/* <p>{post.title}</p> */}
 
             <NavLink key={post.id} to={`/api/posts/${post.id}`} onClick={() => {setShowModal(true)}} className="post-nav">{post.title}
             <p className="post-content">{post.content}</p>
@@ -59,48 +57,19 @@ const PostList = () => {
             <img className="chat-icon icon" src="https://img.icons8.com/ios-glyphs/30/undefined/chat.png" alt="chat"/>
 
             </NavLink>
-            {showModal && (
+
+            </div>
+            </div>
+          <Route path="/api/posts/:id">
+              {showModal && (
               <Modal onClose={() => setShowModal(false)}>
                 <PostDetails />
               </Modal>
             )}
-            </div>
-            </div>
-          {/* </NavLink> */}
-          <Route path="/api/posts/:id">
-              <PostDetails />
             </Route>
           </>
       );
     })}
-    {/* {formOpen ? (
-
-      <Route path="/api/posts/:id">
-              <EditPostModal />
-            </Route>
-    ) : null
-
-  } */}
-    {/* {formOpen ? (
-
-      <EditPostModal />
-    ) : ''
-
-  } */}
-    {/* {formOpen ? (
-
-      root.style.backgroundColor = 'rgba(0,0,0,.6)',
-      console.log('GOTTA DELETE THESE DSOSOOON')
-    ) : root.style.backgroundColor = ''
-
-  } */}
-  {/* {
-    formOpen ? <button className="close-btn" onClick={() => {
-      history.push('/api/posts')
-      setFormOpen(false)
-      return
-    }}>close</button> : null
-  } */}
     </div>
     </>
   )
