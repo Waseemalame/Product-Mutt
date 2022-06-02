@@ -3,7 +3,8 @@ const asyncHandler = require('express-async-handler');
 const {requireAuth} = require('../../utils/auth')
 const postRepository = require('../../db/post-repository')
 
-const { Post, Comment } = require('../../db/models');
+
+const { Post, Comment, User } = require('../../db/models');
 
 const router = express.Router();
 
@@ -12,7 +13,7 @@ router.get('/', asyncHandler(async function(_req, res) {
 
 
   const posts = await Post.findAll()
-  console.log(posts)
+  // console.log(posts)
   return res.json(posts);
 
 }));
@@ -33,18 +34,20 @@ router.get('/:id/comments', asyncHandler(async function(req, res) {
   const post = await postRepository.one(req.params.id)
   const postId = post.id
   const comments = await Comment.findAll({
+    include: User,
     where: {
       postId
     }
   });
-  console.log(comments)
+  // console.log(comments)
+
   return res.json(comments);
 }));
 
 router.post('/', requireAuth, asyncHandler(async function (req, res) {
 
-  console.log('BACKEND POST')
-    console.log(req.body, 'req.body');
+  // console.log('BACKEND POST')
+    // console.log(req.body, 'req.body');
     const { title, content, media, userId } = req.body
     const post = await Post.create({
       title,
@@ -68,7 +71,7 @@ router.put('/:id', requireAuth, asyncHandler(async function (req, res) {
     // const post = await postRepository.one(req.params.id);
     const post = await Post.findByPk(req.params.id)
     const { title, content, media } = req.body
-    console.log(userId)
+    // console.log(userId)
     post.update({
       title,
       content,
