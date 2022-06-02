@@ -87,8 +87,11 @@ router.put('/:id', requireAuth, asyncHandler(async function (req, res) {
     console.log('BACKEND DELETE ROUTE')
     console.log('BACKEND DELETE ROUTE')
     const {id} = req.params;
+    console.log(id)
+    console.log('ididididid')
     const post = await Post.findByPk(id);
     await post.destroy();
+    return res.json({ id });
   })
   );
 

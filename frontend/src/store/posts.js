@@ -110,20 +110,29 @@ export const updatePost = (data) => async (dispatch) => {
   });
 
   if (response.ok) {
+    console.log('RESPONSE IS OKAY!@!!!')
+    console.log('RESPONSE IS OKAY!@!!!')
+    console.log('RESPONSE IS OKAY!@!!!')
+    console.log('RESPONSE IS OKAY!@!!!')
     const post = await response.json();
     dispatch(addOnePost(post));
     return post;
   }
 }
 export const removePost = (postId) => async dispatch => {
+  console.log('removePOST thunk aciton creator')
+  console.log('removePOST thunk aciton creator')
+  console.log('removePOST thunk aciton creator')
+  console.log('removePOST thunk aciton creator')
   const response = await csrfFetch(`/api/posts/${postId}`, {
     method: 'delete',
   });
 
   if (response.ok) {
     // const { id: deletedItemId } = await response.json();
-    dispatch(remove(postId));
-    return;
+    const id = await response.json();
+    dispatch(remove(id));
+    return postId;
   }
 };
 
@@ -173,6 +182,7 @@ const postReducer = (state = initialState, action) => {
         },
       };
       case REMOVE_POST:
+      console.log(action.postId.id)
       const newState = { ...state };
       delete newState[action.postId];
       return newState;

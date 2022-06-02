@@ -75,6 +75,7 @@ const PostDetails = () => {
             <button onClick={async() => {
               await dispatch(removePost(post.id))
               history.push('/api/posts')
+              return;
             }}>delete</button>
             </div>
             }
