@@ -7,7 +7,7 @@ import { updatePost } from "../../store/posts";
 import EditPostForm from "../EditPostForm";
 import './PostList.css'
 import PostDetails from "../PostDetails";
-
+import CreatePostForm from "../CreatePostForm";
 const PostList = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -24,12 +24,14 @@ const PostList = () => {
     dispatch(getPosts())
 
   }, [dispatch]);
+  const root = document.getElementById('root')
 
 
   return (
     <>
     <div className="postlist-container">
 
+    <CreatePostForm />
     <div className="postlist-header">Your next favorite thing 👇</div>
     {posts.map((post) => {
       return (
@@ -60,6 +62,13 @@ const PostList = () => {
               <PostDetails />
             </Route>
     ) : null
+
+  }
+    {formOpen ? (
+
+      root.style.backgroundColor = 'rgba(0,0,0,.6)',
+      console.log('GOTTA DELETE THESE DSOSOOON')
+    ) : root.style.backgroundColor = ''
 
   }
   {
