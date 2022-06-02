@@ -7,11 +7,14 @@ import { getComments } from '../../store/posts';
 import EditPostForm from '../EditPostForm';
 import Fab from '../Fab';
 import './PostDetails.css'
+import EditPostModal from '../EditPostModal';
 
 
 const PostDetails = () => {
 
   const postId = useParams();
+  console.log(postId) // {} ??
+
   const dispatch = useDispatch();
   const id = postId.id
 
@@ -53,7 +56,7 @@ const PostDetails = () => {
         {/* <Comments /> */}
 
           </ul>
-        <EditPostForm />
+        {/* <EditPostModal /> */}
         <PostsComments post={post} />
         </div>
 
