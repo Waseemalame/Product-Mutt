@@ -25,6 +25,11 @@ const PostDetails = () => {
     return state.posts[id]
 
   })
+  const userId = useSelector(state => {
+    if(state.session.user){
+      return state.session.user.id
+    }
+  })
 
   // const post = useSelector(state => state.post[id]);
 
@@ -56,7 +61,18 @@ const PostDetails = () => {
         {/* <Comments /> */}
 
           </ul>
-        {/* <EditPostModal /> */}
+          {/* {userId === post.userId &&
+            <div>
+            <button>delete</button>
+            </div>
+            } */}
+          {userId === post.userId &&
+            <div>
+            <EditPostModal />
+            <button>delete</button>
+            </div>
+            }
+
         <PostsComments post={post} />
         </div>
 
