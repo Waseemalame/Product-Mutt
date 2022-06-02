@@ -8,7 +8,11 @@ import EditPostForm from "../EditPostForm";
 import './PostList.css'
 import PostDetails from "../PostDetails";
 import CreatePostForm from "../CreatePostForm";
+import EditPostModal from "../EditPostModal";
+import { Modal } from "../../context/Modal";
+
 const PostList = () => {
+
   const history = useHistory();
   const dispatch = useDispatch();
   const posts = useSelector(state => Object.values(state.posts));
@@ -18,6 +22,8 @@ const PostList = () => {
     }
   })
   const [formOpen, setFormOpen] = useState(false)
+  const [showModal, setShowModal] = useState(false);
+
 
   useEffect(() => {
 
@@ -37,12 +43,12 @@ const PostList = () => {
       return (
         <>
           {/*  */}
-            <NavLink key={post.id} to={`/api/posts/${post.id}`} onClick={() => setFormOpen(true)} className="post-nav">
             <div className="post">
             <img className="post-img" src={post.media} alt="img" />
             <div className="post-details">
-            <p>{post.title}</p>
-            {/* {post.title} */}
+            {/* <p>{post.title}</p> */}
+
+            <NavLink key={post.id} to={`/api/posts/${post.id}`} onClick={() => {setShowModal(true)}} className="post-nav">{post.title}
             <p className="post-content">{post.content}</p>
             {/* {userId === post.userId &&
             <div>
@@ -52,35 +58,46 @@ const PostList = () => {
 
             <img className="chat-icon icon" src="https://img.icons8.com/ios-glyphs/30/undefined/chat.png" alt="chat"/>
 
-            </div>
-            </div>
             </NavLink>
+            {showModal && (
+              <Modal onClose={() => setShowModal(false)}>
+                <PostDetails />
+              </Modal>
+            )}
+            </div>
+            </div>
           {/* </NavLink> */}
           </>
       );
     })}
-    {formOpen ? (
+    {/* {formOpen ? (
 
       <Route path="/api/posts/:id">
-              <PostDetails />
+              <EditPostModal />
             </Route>
     ) : null
 
-  }
-    {formOpen ? (
+  } */}
+    {/* {formOpen ? (
+
+      <EditPostModal />
+    ) : ''
+
+  } */}
+    {/* {formOpen ? (
 
       root.style.backgroundColor = 'rgba(0,0,0,.6)',
       console.log('GOTTA DELETE THESE DSOSOOON')
     ) : root.style.backgroundColor = ''
 
-  }
-  {
+  } */}
+  {/* {
     formOpen ? <button className="close-btn" onClick={() => {
       history.push('/api/posts')
       setFormOpen(false)
       return
     }}>close</button> : null
-  }
+  } */}
     </div>
     </>
   )
