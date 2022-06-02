@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, useParams } from 'react-router-dom'
+import { Route, useHistory, useParams } from 'react-router-dom'
 import { getPostDetails } from '../../store/posts';
 import PostsComments from '../PostsComments';
 import { getComments } from '../../store/posts';
@@ -8,6 +8,7 @@ import EditPostForm from '../EditPostForm';
 import Fab from '../Fab';
 import './PostDetails.css'
 import EditPostModal from '../EditPostModal';
+import { removePost } from '../../store/posts';
 
 
 const PostDetails = () => {
@@ -34,13 +35,15 @@ const PostDetails = () => {
   // const post = useSelector(state => state.post[id]);
 
   // console.log(post.media, 'POSTPOSTPOST')
-
+  const history = useHistory();
   useEffect(() => {
     dispatch(getPostDetails(id))
+
   }, [dispatch, id])
-  useEffect(() => {
-    dispatch(getComments(id))
-  }, [dispatch, id])
+  // useEffect(() => {
+  //   dispatch(removePost(id))
+  // }, [dispatch, id])
+
 
 
   return (
@@ -69,7 +72,10 @@ const PostDetails = () => {
           {userId === post.userId &&
             <div>
             <EditPostModal />
-            <button>delete</button>
+            <button onClick={async() => {
+              await dispatch(removePost(post.id))
+              history.push('/api/posts')
+            }}>delete</button>
             </div>
             }
 

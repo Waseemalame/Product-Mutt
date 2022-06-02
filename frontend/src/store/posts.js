@@ -5,6 +5,7 @@ import { LOAD_COMMENTS, REMOVE_COMMENT, ADD_COMMENT } from './comments';
 
 const LOAD = "posts/LOAD";
 const ADD = "posts/ADD"
+const REMOVE_POST = "posts/:id/REMOVE"
 const GET_ONE_POST = "posts/:id"
 
 
@@ -20,6 +21,11 @@ const addOnePost = (post) => {
     post: post,
   };
 }
+const remove = (postId) => ({
+  type: REMOVE_POST,
+  postId
+});
+
 
 export const getPostDetails = (id) => async dispatch => {
 
@@ -92,6 +98,7 @@ try {
   }
 
 }
+
 export const updatePost = (data) => async (dispatch) => {
   // console.log(data)
   const response = await csrfFetch(`/api/posts/${data.id}`, {
@@ -107,9 +114,18 @@ export const updatePost = (data) => async (dispatch) => {
     dispatch(addOnePost(post));
     return post;
   }
-
 }
+export const removePost = (postId) => async dispatch => {
+  const response = await csrfFetch(`/api/posts/${postId}`, {
+    method: 'delete',
+  });
 
+  if (response.ok) {
+    // const { id: deletedItemId } = await response.json();
+    dispatch(remove(postId));
+    return;
+  }
+};
 
 const initialState = {
   list: []
@@ -156,6 +172,10 @@ const postReducer = (state = initialState, action) => {
           comments: action.comments.map((comment) => comment.id),
         },
       };
+      case REMOVE_POST:
+      const newState = { ...state };
+      delete newState[action.postId];
+      return newState;
 
         default:
       return state;

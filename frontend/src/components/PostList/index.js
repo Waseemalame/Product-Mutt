@@ -4,6 +4,7 @@ import { getPosts } from "../../store/posts";
 import { NavLink, Route, useHistory, useParams } from 'react-router-dom'
 
 import { updatePost } from "../../store/posts";
+import { removePost } from "../../store/posts";
 import EditPostForm from "../EditPostForm";
 import './PostList.css'
 import PostDetails from "../PostDetails";
@@ -30,6 +31,11 @@ const PostList = () => {
     dispatch(getPosts())
 
   }, [dispatch]);
+  // useEffect(() => {
+
+  //   dispatch(removePost())
+
+  // }, [dispatch]);
   const root = document.getElementById('root')
 
 

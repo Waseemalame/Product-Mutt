@@ -29,7 +29,7 @@ const PostsComments = ({ post, setEditItemId }) => {
         <div>{comment.content}</div>
         <br></br>
         </>
-)) : ''}
+)) : null}
     </>
   )
 }
