@@ -125,15 +125,13 @@ const postReducer = (state = initialState, action) => {
       });
       return {
         ...allPosts,
-        // ...state,
+        ...state,
         // list: action.list,
       };
     case ADD:
-      // console.log('IN REDUCER ADD ONE CASE - ACTION -> ', action);
-      // console.log(state, 'state')
-      // console.log(action.post.id, 'action.post.id')
+
       if (!state[action.post.id]) {
-        // console.log('NOT state[action.post.id]')
+
         const newState = {
           ...state,
           [action.post.id]: action.post,
