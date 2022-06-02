@@ -1,8 +1,13 @@
 import { csrfFetch, restoreCSRF } from "./csrf";
 import { ValidationError } from "../utils/validationError";
+
+import { LOAD_COMMENTS, REMOVE_COMMENT, ADD_COMMENT } from './comments';
+
 const LOAD = "posts/LOAD";
 const ADD = "posts/ADD"
 const GET_ONE_POST = "posts/:id"
+
+
 const load = (list) => ({
   type: LOAD,
   list,
@@ -37,6 +42,19 @@ export const getPosts = () => async (dispatch) => {
     dispatch(load(list));
   }
 };
+export const getComments = () => async (dispatch) => {
+  const response = await fetch(`/api/posts`);
+
+
+  if (response.ok) {
+
+    const list = await response.json();
+    // Data from backend, into regular action
+    dispatch(load(list));
+  }
+};
+
+
 
 export const createPost = (data) => async (dispatch) => {
 try {
@@ -97,6 +115,7 @@ const initialState = {
   list: []
 }
 
+
 const postReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD:
@@ -105,8 +124,9 @@ const postReducer = (state = initialState, action) => {
         allPosts[post.id] = post;
       });
       return {
-        // ...state,
-        ...allPosts
+        ...allPosts,
+        ...state,
+        list: action.list,
       };
     case ADD:
       console.log('IN REDUCER ADD ONE CASE - ACTION -> ', action);
@@ -130,6 +150,14 @@ const postReducer = (state = initialState, action) => {
         ...action.post,
           },
         };
+        case LOAD_COMMENTS:
+      return {
+        ...state,
+        [action.postId]: {
+          ...state[action.postId],
+          comments: action.comments.map((comment) => comment.id),
+        },
+      };
 
         default:
       return state;
