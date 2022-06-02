@@ -13,14 +13,14 @@ import EditPostModal from '../EditPostModal';
 const PostDetails = () => {
 
   const postId = useParams();
-  console.log(postId) // {} ??
+  console.log(postId, 'postId') // {} ??
 
   const dispatch = useDispatch();
   const id = postId.id
 
   // const [showForm, setShowForm] = useState(false);
   const post = useSelector(state => {
-    console.log(state.posts[id], 'state.posts from postDetails')
+    // console.log(state.posts[id], 'state.posts from postDetails')
     // return Object.values(state.posts)[id - 1]
     return state.posts[id]
 
@@ -28,14 +28,14 @@ const PostDetails = () => {
 
   // const post = useSelector(state => state.post[id]);
 
-  console.log(post, 'POSTPOSTPOST')
+  // console.log(post.media, 'POSTPOSTPOST')
 
   useEffect(() => {
     dispatch(getPostDetails(id))
   }, [dispatch, id])
-  useEffect(() => {
-    dispatch(getComments(id))
-  }, [dispatch, id])
+  // useEffect(() => {
+  //   dispatch(getComments(id))
+  // }, [dispatch, id])
 
 
   return (
@@ -57,7 +57,7 @@ const PostDetails = () => {
 
           </ul>
         {/* <EditPostModal /> */}
-        <PostsComments post={post} />
+        {/* <PostsComments post={post} /> */}
         </div>
 
     </>

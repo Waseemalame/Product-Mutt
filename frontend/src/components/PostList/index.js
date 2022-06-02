@@ -1,7 +1,7 @@
 import { useDispatch, useSelector, useStore } from "react-redux"
 import { useEffect, useState } from "react";
 import { getPosts } from "../../store/posts";
-import { NavLink, Route, useHistory } from 'react-router-dom'
+import { NavLink, Route, useHistory, useParams } from 'react-router-dom'
 
 import { updatePost } from "../../store/posts";
 import EditPostForm from "../EditPostForm";
@@ -12,6 +12,7 @@ import EditPostModal from "../EditPostModal";
 import { Modal } from "../../context/Modal";
 
 const PostList = () => {
+  const id = useParams();
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -23,7 +24,6 @@ const PostList = () => {
   })
   const [formOpen, setFormOpen] = useState(false)
   const [showModal, setShowModal] = useState(false);
-
 
   useEffect(() => {
 
@@ -67,6 +67,9 @@ const PostList = () => {
             </div>
             </div>
           {/* </NavLink> */}
+          <Route path="/api/posts/:id">
+              <PostDetails />
+            </Route>
           </>
       );
     })}

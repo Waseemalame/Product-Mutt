@@ -13,7 +13,6 @@ router.get('/', asyncHandler(async function(_req, res) {
 
 
   const posts = await Post.findAll()
-  // console.log(posts)
   return res.json(posts);
 
 }));
@@ -39,15 +38,14 @@ router.get('/:id/comments', asyncHandler(async function(req, res) {
       postId
     }
   });
-  // console.log(comments)
+
 
   return res.json(comments);
 }));
 
 router.post('/', requireAuth, asyncHandler(async function (req, res) {
 
-  // console.log('BACKEND POST')
-    // console.log(req.body, 'req.body');
+
     const { title, content, media, userId } = req.body
     const post = await Post.create({
       title,
@@ -71,7 +69,7 @@ router.put('/:id', requireAuth, asyncHandler(async function (req, res) {
     // const post = await postRepository.one(req.params.id);
     const post = await Post.findByPk(req.params.id)
     const { title, content, media } = req.body
-    // console.log(userId)
+
     post.update({
       title,
       content,

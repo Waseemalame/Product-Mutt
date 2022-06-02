@@ -41,7 +41,6 @@ const CreatePostForm = () => {
 
     let createdPost;
     createdPost = await dispatch(createPost(data))
-    console.log('after createPost dispatch')
   }
 
   return(

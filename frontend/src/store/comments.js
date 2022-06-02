@@ -28,12 +28,7 @@ const remove = (commentId, postId) => ({
 
 
 export const getComments = (postId) => async (dispatch) => {
-  console.log('hihihi')
-  console.log('hihihi')
-  console.log('hihihi')
-  console.log('hihihi')
-  console.log('hihihi')
-  console.log('hihihi')
+
   const response = await fetch(`/api/posts/${postId}/comments`);
 
   if (response.ok) {
@@ -49,12 +44,12 @@ const commentsReducer = (state = initialState, action) => {
   switch (action.type) {
 
     case LOAD_COMMENTS:
-      console.log(action.comments, 'action.comments')
+      // console.log(action.comments, 'action.comments')
       const newComments = {};
       action.comments.forEach(comment => {
-        console.log(comment.id, 'comment!!!')
+        // console.log(comment.id, 'comment!!!')
         newComments[comment.id] = comment;
-        console.log(newComments, 'newComments')
+        // console.log(newComments, 'newComments')
       })
       return {
         ...state,
