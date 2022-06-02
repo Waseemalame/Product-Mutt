@@ -37,21 +37,24 @@ const PostList = () => {
       return (
         <>
           {/*  */}
+            <NavLink key={post.id} to={`/api/posts/${post.id}`} onClick={() => setFormOpen(true)} className="post-nav">
             <div className="post">
             <img className="post-img" src={post.media} alt="img" />
             <div className="post-details">
-            {/* <p>{post.title}</p> */}
-            <NavLink key={post.id} to={`/api/posts/${post.id}`} onClick={() => setFormOpen(true)} className="post">{post.title} </NavLink>
+            <p>{post.title}</p>
+            {/* {post.title} */}
             <p className="post-content">{post.content}</p>
-            {userId === post.userId &&
+            {/* {userId === post.userId &&
             <div>
             <button>delete</button>
             </div>
-            }
-            <button>Reply</button>
-            </div>
-            </div>
+            } */}
 
+            <img className="chat-icon icon" src="https://img.icons8.com/ios-glyphs/30/undefined/chat.png" alt="chat"/>
+
+            </div>
+            </div>
+            </NavLink>
           {/* </NavLink> */}
           </>
       );

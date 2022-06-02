@@ -9,8 +9,11 @@
   display: flex;
   /* flex-direction: column; */
   /* margin-left: 100px; */
-  align-items: center;
+  /* align-items: center; */
   margin: 20px;
+  /* text-decoration: none; */
+}
+.post-nav{
   text-decoration: none;
 }
 
@@ -30,6 +33,7 @@
 
 .post-details{
   margin-bottom: 40px;
+  height: 80px;
 }
 /* .post-content{
   text-decoration: none;
@@ -45,3 +49,7 @@
 /* .darkened-bg{
   background-color: black;
 } */
+.chat-icon{
+  width: 18px;
+
+}
