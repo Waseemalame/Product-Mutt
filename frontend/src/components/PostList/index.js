@@ -11,6 +11,7 @@ import PostDetails from "../PostDetails";
 import CreatePostForm from "../CreatePostForm";
 import EditPostModal from "../EditPostModal";
 import { Modal } from "../../context/Modal";
+import CreatePostModal from "../CreatePostModal";
 
 const PostList = () => {
   const id = useParams();
@@ -26,6 +27,7 @@ const PostList = () => {
   })
   const [formOpen, setFormOpen] = useState(false)
   const [showModal, setShowModal] = useState(false);
+  const [showCreateModal, setShowCreateModal] = useState(false);
 
   useEffect(() => {
 
@@ -42,9 +44,9 @@ const PostList = () => {
 
   return (
     <>
+    <CreatePostModal />
     <div className="postlist-container">
 
-    <CreatePostForm />
     <div className="postlist-header">Your next favorite thing 👇</div>
     {posts.map((post) => {
       return (
@@ -78,6 +80,7 @@ const PostList = () => {
               </Modal>
             )}
             </Route>
+
           </>
       );
     })}
