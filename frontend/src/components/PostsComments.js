@@ -1,8 +1,11 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getComments } from '../store/comments'
+import CreateCommentForm from "./CreateCommentForm";
 
 const PostsComments = ({ post, setEditItemId }) => {
+  const [showCommentForm, setShowCommentForm] = useState(false)
+
   const comments = useSelector((state) => {
 
     if (!post.comments) return null;
@@ -18,9 +21,13 @@ const PostsComments = ({ post, setEditItemId }) => {
     dispatch(getComments(post.id));
   }, [dispatch, post.id]);
 
+
   return (
     <>
-
+      <button onClick={() => setShowCommentForm(true)}>Reply</button>
+      {showCommentForm ? (
+        <CreateCommentForm post={post} setShowCommentForm={setShowCommentForm}/>
+      ) : ''}
       <h5>Comments</h5>
       { comments ? comments.map(comment => (
         <>
