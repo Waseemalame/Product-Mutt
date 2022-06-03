@@ -32,6 +32,7 @@ router.get('/:id/comments', asyncHandler(async function(req, res) {
 
   const post = await postRepository.one(req.params.id)
   const postId = post.id
+
   const comments = await Comment.findAll({
     include: User,
     where: {
@@ -59,8 +60,6 @@ router.post('/', requireAuth, asyncHandler(async function (req, res) {
   );
 router.put('/:id', requireAuth, asyncHandler(async function (req, res) {
 
-
-
     const userId = req.user.id;
     req.body.userId = userId;
 
@@ -80,6 +79,9 @@ router.put('/:id', requireAuth, asyncHandler(async function (req, res) {
     })
   );
 
+
+
+
   router.delete('/:id', requireAuth, asyncHandler(async function (req, res) {
 
 
@@ -89,7 +91,44 @@ router.put('/:id', requireAuth, asyncHandler(async function (req, res) {
     return res.json(id);
   })
   );
+    /* CREATE COMMENT  */
+    router.post('/:id/comments/', requireAuth, asyncHandler(async function (req, res) {
 
+      const {
+        content: commentContent,
+        userId,
+        postId
+       } = req.body;
+       console.log(req.body)
+      const comment = await Comment.create({
+        content: commentContent,
+        userId,
+        postId
+
+      })
+      const newComment = await Comment.findByPk(comment.id, {include: User})
+    return res.json(newComment);
+
+    }))
+
+
+    /* EDIT COMMENT  */
+    // router.put(
+    //   "/:postId/comments/:id",
+    //   requireAuth,
+    //   asyncHandler(async function (req, res) {
+
+    //   const post = await Post.findByPk(req.params.postId)
+
+    //   post.update({
+    //     title,
+    //     content,
+    //     media
+    //   })
+
+    //   return res.json(post);
+    //   })
+    // );
 
 
 
