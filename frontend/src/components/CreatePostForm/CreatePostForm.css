@@ -15,3 +15,7 @@
 .submit-create-btn{
 
 }
+
+.create-form-errors{
+  color: red;
+}
