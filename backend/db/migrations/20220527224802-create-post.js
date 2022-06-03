@@ -17,6 +17,7 @@ module.exports = {
         type: Sequelize.TEXT,
       },
       media: {
+        allowNull: false,
         type: Sequelize.TEXT
       },
       userId: {

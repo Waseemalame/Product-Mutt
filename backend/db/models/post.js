@@ -1,10 +1,13 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Post = sequelize.define('Post', {
-    title: DataTypes.TEXT,
-    content: DataTypes.TEXT,
-    media: DataTypes.TEXT,
-    userId: DataTypes.INTEGER
+    title:{
+      allowNull: false,
+      type: DataTypes.TEXT,
+    },
+    content: {type: DataTypes.TEXT, allowNull: false},
+    media: {type: DataTypes.TEXT, allowNull: false},
+    userId: {type: DataTypes.INTEGER, allowNull: false}
   },
   {
     scopes: {
