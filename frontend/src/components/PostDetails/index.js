@@ -11,35 +11,37 @@ import EditPostModal from '../EditPostModal';
 import { removePost } from '../../store/posts';
 
 
-const PostDetails = () => {
+const PostDetails = ({ post, setShowModal }) => {
 
-  const postId = useParams();
-  console.log(postId, 'postId') // {} ??
+  // const postId = useParams();
+  // console.log(postId, 'postId') // {} ??
 
   const dispatch = useDispatch();
-  const id = postId.id
+  // const id = postId.id
 
   // const [showForm, setShowForm] = useState(false);
-  const post = useSelector(state => {
-    console.log(state.posts[id], 'state.posts from postDetails')
+  // const onePost = useSelector(state => {
+    // console.log(state.posts[id], 'state.posts from postDetails')
     // return Object.values(state.posts)[id - 1]
-    return state.posts[id]
 
-  })
+
+    // return state.posts[post.id]
+
+  // })
   const userId = useSelector(state => {
     if(state.session.user){
       return state.session.user.id
     }
   })
 
-  // const post = useSelector(state => state.post[id]);
+  // const post = useSelector(state => state.post[postId]);
 
   // console.log(post.media, 'POSTPOSTPOST')
   const history = useHistory();
-  useEffect(() => {
-    dispatch(getPostDetails(id))
+  // useEffect(() => {
+  //   dispatch(getPostDetails(post.id))
 
-  }, [dispatch, id])
+  // }, [dispatch, post.id])
   // useEffect(() => {
   //   dispatch(removePost(id))
   // }, [dispatch, id])
@@ -73,9 +75,10 @@ const PostDetails = () => {
             <div>
             <EditPostModal />
             <button onClick={async() => {
-              await dispatch(removePost(post.id))
-              history.push('/api/posts')
-              return;
+            // setShowModal(false)
+            history.push('/')
+            await dispatch(removePost(post.id))
+            return;
             }}>delete</button>
             </div>
             }
