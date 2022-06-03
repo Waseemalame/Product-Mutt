@@ -1,3 +1,5 @@
+import { csrfFetch } from "./csrf";
+
 export const LOAD_COMMENTS = "comments/LOAD_COMMENTS";
 export const UPDATE_COMMENT = "comments/UPDATE_COMMENT";
 export const REMOVE_COMMENT = "comments/REMOVE_COMMENT";
@@ -37,6 +39,24 @@ export const getComments = (postId) => async (dispatch) => {
   }
 };
 
+export const createComment = (data) => async (dispatch) => {
+  console.log('INSIDE CREATE  COMMENT THUNK ACTION CREATOR')
+  console.log('INSIDE CREATE  COMMENT THUNK ACTION CREATOR')
+  console.log('INSIDE CREATE  COMMENT THUNK ACTION CREATOR')
+  console.log('INSIDE CREATE  COMMENT THUNK ACTION CREATOR')
+
+  const response = await csrfFetch(`/api/posts/${data.postId}/comments`, {
+    method: 'POST',
+    body: JSON.stringify(data)
+  });
+
+
+    const newComment = await response.json()
+    dispatch(add(newComment))
+    return newComment
+
+}
+
 
 const initialState = {};
 
@@ -60,6 +80,10 @@ const commentsReducer = (state = initialState, action) => {
       delete newState[action.commentId];
       return newState;
     case ADD_COMMENT:
+      return {
+        ...state,
+        [action.comment.id]: action.comment
+      };
     case UPDATE_COMMENT:
       return {
         ...state,
