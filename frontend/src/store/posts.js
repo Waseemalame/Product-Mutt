@@ -124,6 +124,7 @@ export const removePost = (postId) => async dispatch => {
   console.log('removePOST thunk aciton creator')
   console.log('removePOST thunk aciton creator')
   console.log('removePOST thunk aciton creator')
+
   const response = await csrfFetch(`/api/posts/${postId}`, {
     method: 'delete',
   });
@@ -136,9 +137,7 @@ export const removePost = (postId) => async dispatch => {
   }
 };
 
-const initialState = {
-  list: []
-}
+const initialState = {}
 
 
 const postReducer = (state = initialState, action) => {
@@ -161,9 +160,9 @@ const postReducer = (state = initialState, action) => {
           ...state,
           [action.post.id]: action.post,
         };
-        const postList = newState.list.map((id) => newState[id]);
-        postList.push(action.post);
-        newState.list = postList;
+        // const postList = newState.list.map((id) => newState[id]);
+        // postList.push(action.post);
+        // newState.list = postList;
         return newState;
       }
       return {
@@ -182,7 +181,7 @@ const postReducer = (state = initialState, action) => {
         },
       };
       case REMOVE_POST:
-      console.log(action.postId.id)
+      console.log(action.postId, 'action.post')
       const newState = { ...state };
       delete newState[action.postId];
       return newState;
