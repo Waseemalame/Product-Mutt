@@ -110,7 +110,16 @@ router.put('/:id', requireAuth, asyncHandler(async function (req, res) {
     return res.json(newComment);
 
     }))
+    /* DELETE COMMENT */
+    router.delete('/:postId/comments/:id', requireAuth, asyncHandler(async function (req, res) {
 
+
+      const {id} = req.params;
+      const comment = await Comment.findByPk(id);
+      await comment.destroy();
+      return res.json({id});
+    })
+    );
 
     /* EDIT COMMENT  */
     // router.put(

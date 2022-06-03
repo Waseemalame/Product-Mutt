@@ -180,19 +180,6 @@ const postReducer = (state = initialState, action) => {
       delete newState[action.postId];
       return newState;
       case ADD_COMMENT:
-      console.log(action);
-      console.log('ADD_COMMENT')
-      console.log('ADD_COMMENT')
-      console.log('ADD_COMMENT')
-      console.log('ADD_COMMENT')
-      console.log(action.comment.postId)
-      console.log('action.comment.postId')
-      console.log('ADD_COMMENT')
-      console.log(state[action.comment.postId].comments, action.comment.id)
-      console.log('...state[action')
-      console.log('...state[action')
-      console.log('ADD_COMMENT')
-
       return {
         ...state,
         [action.comment.postId]: {
@@ -200,7 +187,22 @@ const postReducer = (state = initialState, action) => {
           comments: [...state[action.comment.postId].comments, action.comment.id],
         },
       };
-
+      case REMOVE_COMMENT:
+        console.log(state)
+        console.log(action)
+        console.log('REMOVING ME!!')
+        console.log('REMOVING ME!!')
+        console.log('REMOVING ME!!')
+        console.log('REMOVING ME!!')
+        return {
+          ...state,
+          [action.postId]: {
+            ...state[action.postId],
+            comments: state[action.postId].comments.filter(
+              (commentId) => commentId !== action.commentId
+            ),
+          },
+        };
         default:
       return state;
   }

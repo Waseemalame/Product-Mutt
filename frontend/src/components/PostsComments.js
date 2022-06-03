@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getComments } from '../store/comments'
+import { getComments, deleteComment } from '../store/comments'
 import CreateCommentForm from "./CreateCommentForm";
 
 const PostsComments = ({ post, setEditItemId }) => {
   const [showCommentForm, setShowCommentForm] = useState(false)
-
+  const [showEditForm, setShowEditForm] = useState(false)
   const comments = useSelector((state) => {
 
     if (!post.comments) return null;
@@ -15,6 +15,12 @@ const PostsComments = ({ post, setEditItemId }) => {
     // console.log(state.posts[post.id], 'state.posts', post.id)
     // return Object.values(state.posts)[post.id - 1]
   });
+  const userId = useSelector(state => {
+    if(state.session.user){
+      return state.session.user.id
+    }
+  })
+
   // const comments = useSelector(state => console.log(state))
   const dispatch = useDispatch();
   useEffect(() => {
@@ -31,11 +37,26 @@ const PostsComments = ({ post, setEditItemId }) => {
       <h5>Comments</h5>
       { comments ? comments.map(comment => (
         <>
-        <div>{comment.User.username}</div>
-        <div>{comment.content}</div>
+        {comment ? (
+          <>
+          <div>{comment.User.username}</div>
+          <div>{comment.content}</div>
+          {userId === comment.User.id ? (
+          <>
+          <button onClick={() => setShowEditForm(true)}>Edit</button>
+          <button onClick={async() => {
+            console.log('WHATSUP!')
+            await dispatch(deleteComment(comment.id, post.id))
+          }}>Delete</button>
+          </>
+        ) : ''}
+          </>
+        ) : ''}
+
 
         </>
-)) : ''}
+)) : ''
+}
     </>
   )
 }

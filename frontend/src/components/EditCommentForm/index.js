@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createComment } from "../../store/comments";
 
 
-const CreateCommentForm = ({ post, setShowCommentForm }) => {
+const EditCommentForm = () => {
   const [commentContent, setCommentContent] = useState("");
   const updateCommentContent = (e) => setCommentContent(e.target.value);
 
@@ -14,26 +13,25 @@ const CreateCommentForm = ({ post, setShowCommentForm }) => {
   }
   const userId = sessionUser.id
 
+  // const onSubmit = async (e) => {
+  //   e.preventDefault();
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
+  //   const data = {
+  //     content: commentContent,
+  //     userId,
+  //     postId: post.id
+  //   }
 
-    const data = {
-      content: commentContent,
-      userId,
-      postId: post.id
-    }
+  //   let newComment = await dispatch(createComment(data))
 
-    let newComment = await dispatch(createComment(data))
-
-    setShowCommentForm(false)
+  //   setShowCommentForm(false)
 
 
-  }
+  // }
 
   return (
     <>
-      <form onSubmit={onSubmit}>
+      <form>
         <input
                   type="text"
                   placeholder="Write a comment"
@@ -46,5 +44,4 @@ const CreateCommentForm = ({ post, setShowCommentForm }) => {
 
   )
 }
-
-export default CreateCommentForm
+export default EditCommentForm;

@@ -56,7 +56,37 @@ export const createComment = (data) => async (dispatch) => {
     return newComment
 
 }
+// export const updateComment = data => async dispatch => {
+//   const response = await fetch(`/api/posts/${data.id}`, {
+//     method: 'put',
+//     headers: {
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify(data)
+//   });
 
+//   if (response.ok) {
+//     const item = await response.json();
+//     dispatch(update(item));
+//     return item;
+//   }
+// };
+export const deleteComment = (commentId, postId) => async dispatch => {
+  const response = await csrfFetch(`/api/posts/${postId}/comments/${commentId}`, {
+    method: 'delete',
+  });
+
+  if (response.ok) {
+    const { id: deletedCommentId } = await response.json();
+    console.log(deletedCommentId)
+    console.log('STORE!!!!!!!!!!!!!')
+    console.log('STORE!!!!!!!!!!!!!')
+    console.log('STORE!!!!!!!!!!!!!')
+    console.log('STORE!!!!!!!!!!!!!')
+    dispatch(remove(deletedCommentId, postId));
+
+  }
+};
 
 const initialState = {};
 
