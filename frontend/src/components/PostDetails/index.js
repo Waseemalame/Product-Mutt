@@ -35,9 +35,10 @@ const PostDetails = ({ setShowModal }) => {
   })
 
   const post = useSelector(state => state.posts[param.id]);
-  console.log(post, 'post from postdetails useselector')
-  // console.log(post.media, 'POSTPOSTPOST')
+
+
   const history = useHistory();
+
   // useEffect(() => {
   //   dispatch(getPostDetails(post.id))
 
