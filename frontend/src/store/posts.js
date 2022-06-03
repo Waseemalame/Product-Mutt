@@ -100,7 +100,7 @@ try {
 }
 
 export const updatePost = (data) => async (dispatch) => {
-  // console.log(data)
+
   const response = await csrfFetch(`/api/posts/${data.id}`, {
     method: "put",
     headers: {
@@ -110,20 +110,12 @@ export const updatePost = (data) => async (dispatch) => {
   });
 
   if (response.ok) {
-    console.log('RESPONSE IS OKAY!@!!!')
-    console.log('RESPONSE IS OKAY!@!!!')
-    console.log('RESPONSE IS OKAY!@!!!')
-    console.log('RESPONSE IS OKAY!@!!!')
     const post = await response.json();
     dispatch(addOnePost(post));
     return post;
   }
 }
 export const removePost = (postId) => async dispatch => {
-  console.log('removePOST thunk aciton creator')
-  console.log('removePOST thunk aciton creator')
-  console.log('removePOST thunk aciton creator')
-  console.log('removePOST thunk aciton creator')
 
   const response = await csrfFetch(`/api/posts/${postId}`, {
     method: 'delete',
@@ -136,6 +128,8 @@ export const removePost = (postId) => async dispatch => {
     return postId;
   }
 };
+
+
 
 const initialState = {}
 
@@ -185,6 +179,27 @@ const postReducer = (state = initialState, action) => {
       const newState = { ...state };
       delete newState[action.postId];
       return newState;
+      case ADD_COMMENT:
+      console.log(action);
+      console.log('ADD_COMMENT')
+      console.log('ADD_COMMENT')
+      console.log('ADD_COMMENT')
+      console.log('ADD_COMMENT')
+      console.log(action.comment.postId)
+      console.log('action.comment.postId')
+      console.log('ADD_COMMENT')
+      console.log(state[action.comment.postId].comments, action.comment.id)
+      console.log('...state[action')
+      console.log('...state[action')
+      console.log('ADD_COMMENT')
+
+      return {
+        ...state,
+        [action.comment.postId]: {
+          ...state[action.comment.postId],
+          comments: [...state[action.comment.postId].comments, action.comment.id],
+        },
+      };
 
         default:
       return state;

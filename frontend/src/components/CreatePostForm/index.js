@@ -13,6 +13,8 @@ const CreatePostForm = ({ setShowModal }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [media, setMedia] = useState("");
+  const [validationErrors, setValidationErrors] = useState([])
+
 
   const updateTitle = (e) => setTitle(e.target.value);
   const updateContent = (e) => setContent(e.target.value);
@@ -20,9 +22,23 @@ const CreatePostForm = ({ setShowModal }) => {
 
   const [isLoaded, setIsLoaded] = useState(false);
   const history = useHistory();
+
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
+
+  useEffect(() => {
+    let postName;
+    const errors = [];
+
+  if(!title || title.length < 3) errors.push("Title must be 3 or more characters");
+  if(title.length > 20) errors.push('Name must be 20 characters or less');
+  if(!content) errors.push("Content field cannot be empty");
+  if(!media) errors.push("Media field cannot be empty")
+  setValidationErrors(errors);
+
+
+  }, [title, content, media]);
 
   const sessionUser = useSelector((state) => state.session.user);
   if(!sessionUser){
@@ -50,7 +66,11 @@ const CreatePostForm = ({ setShowModal }) => {
     <form className="create-post-form" onSubmit={handleSubmit}>
 
       <div className="create-input-div">
-
+        <ul className="create-form-errors">
+          {validationErrors.map((error) => (
+            <li key={error}>{error}</li>
+          ))}
+        </ul>
         <label>Title
           <input
                 type="text"
@@ -80,7 +100,7 @@ const CreatePostForm = ({ setShowModal }) => {
                 />
         </label>
       </div>
-      <button className='submit-create-btn' type="submit">Create Post</button>
+      <button className='submit-create-btn' type="submit" disabled={validationErrors.length > 0}>Create Post</button>
     </form>
   )
 }
