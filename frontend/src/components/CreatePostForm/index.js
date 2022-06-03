@@ -5,6 +5,8 @@ import { createPost } from "../../store/posts";
 import { ValidationError } from "../../utils/validationError";
 import * as sessionActions from "../../store/session";
 
+import "./CreatePostForm.css"
+
 
 const CreatePostForm = () => {
   const dispatch = useDispatch();
@@ -44,27 +46,40 @@ const CreatePostForm = () => {
   }
 
   return(
-    <form onSubmit={handleSubmit}>
+    <form className="create-post-form" onSubmit={handleSubmit}>
 
-      <input
-            type="text"
-            placeholder="Title"
-            value={title}
-            onChange={updateTitle}
-            />
-      <input
-            type="text"
-            placeholder="Content"
-            value={content}
-            onChange={updateContent}
-            />
-      <input
-            type="text"
-            placeholder="Media"
-            value={media}
-            onChange={updateMedia}
-            />
-      <button type="submit">Create Post</button>
+      <div className="create-input-div">
+
+        <label>Title
+          <input
+                type="text"
+                placeholder="Title"
+                value={title}
+                onChange={updateTitle}
+                />
+        </label>
+      </div>
+        <div className="create-input-div">
+      <label>Content
+          <input
+                type="text"
+                placeholder="Content"
+                value={content}
+                onChange={updateContent}
+                />
+      </label>
+        </div>
+      <div className="create-input-div">
+        <label>Media
+          <input
+                type="text"
+                placeholder="Media"
+                value={media}
+                onChange={updateMedia}
+                />
+        </label>
+      </div>
+      <button className='submit-create-btn' type="submit">Create Post</button>
     </form>
   )
 }

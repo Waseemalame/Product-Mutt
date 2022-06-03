@@ -1,0 +1,17 @@
+.create-post-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.create-input-div{
+  margin: 20px;
+  padding: 20px;
+}
+.create-input-div input{
+
+}
+.submit-create-btn{
+
+}
