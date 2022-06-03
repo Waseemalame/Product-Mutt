@@ -24,7 +24,6 @@ const PostsComments = ({ post, setEditItemId }) => {
       <h5>Comments</h5>
       { comments ? comments.map(comment => (
         <>
-        {console.log(comment, 'commentcomment')}
         <div>{comment.User.username}</div>
         <div>{comment.content}</div>
 
