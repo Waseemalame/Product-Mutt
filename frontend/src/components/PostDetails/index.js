@@ -11,10 +11,10 @@ import EditPostModal from '../EditPostModal';
 import { removePost } from '../../store/posts';
 
 
-const PostDetails = ({ post, setShowModal }) => {
+const PostDetails = ({ setShowModal }) => {
 
-  // const postId = useParams();
-  // console.log(postId, 'postId') // {} ??
+  const param = useParams();
+  // console.log(param.id, 'postId') // {} ??
 
   const dispatch = useDispatch();
   // const id = postId.id
@@ -34,8 +34,8 @@ const PostDetails = ({ post, setShowModal }) => {
     }
   })
 
-  // const post = useSelector(state => state.post[postId]);
-
+  const post = useSelector(state => state.posts[param.id]);
+  console.log(post, 'post from postdetails useselector')
   // console.log(post.media, 'POSTPOSTPOST')
   const history = useHistory();
   // useEffect(() => {
