@@ -18,6 +18,7 @@ const PostList = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const posts = useSelector(state => Object.values(state.posts));
+
   const userId = useSelector(state => {
     if(state.session.user){
       return state.session.user.id
@@ -53,6 +54,7 @@ const PostList = () => {
             <div className="post-details">
 
             <NavLink key={post.id} to={`/api/posts/${post.id}`} onClick={() => {setShowModal(true)}} className="post-nav">{post.title}
+
             <p className="post-content">{post.content}</p>
             {/* {userId === post.userId &&
             <div>
@@ -68,8 +70,11 @@ const PostList = () => {
             </div>
           <Route path="/api/posts/:id">
               {showModal && (
-              <Modal onClose={() => setShowModal(false)}>
-                <PostDetails />
+                <Modal onClose={() => {
+                  history.push('/api/posts')
+                  setShowModal(false)
+                  }}>
+                  <PostDetails post={post} setShowModal={setShowModal}/>
               </Modal>
             )}
             </Route>
