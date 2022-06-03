@@ -12,7 +12,6 @@ const PostsComments = ({ post, setEditItemId }) => {
     // console.log(state.posts[post.id], 'state.posts', post.id)
     // return Object.values(state.posts)[post.id - 1]
   });
-
   // const comments = useSelector(state => console.log(state))
   const dispatch = useDispatch();
   useEffect(() => {
@@ -21,15 +20,15 @@ const PostsComments = ({ post, setEditItemId }) => {
 
   return (
     <>
-      <br></br>
+
       { comments ? comments.map(comment => (
         <>
         <h5>Comments</h5>
         <div>{comment.User.username}</div>
         <div>{comment.content}</div>
-        <br></br>
+
         </>
-)) : null}
+)) : ''}
     </>
   )
 }
