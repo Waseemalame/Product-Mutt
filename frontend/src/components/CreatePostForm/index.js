@@ -8,7 +8,7 @@ import * as sessionActions from "../../store/session";
 import "./CreatePostForm.css"
 
 
-const CreatePostForm = () => {
+const CreatePostForm = ({ setShowModal }) => {
   const dispatch = useDispatch();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -19,7 +19,7 @@ const CreatePostForm = () => {
   const updateMedia = (e) => setMedia(e.target.value);
 
   const [isLoaded, setIsLoaded] = useState(false);
-
+  const history = useHistory();
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
@@ -43,6 +43,7 @@ const CreatePostForm = () => {
 
     let createdPost;
     createdPost = await dispatch(createPost(data))
+    setShowModal(false)
   }
 
   return(
