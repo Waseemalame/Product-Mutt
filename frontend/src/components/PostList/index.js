@@ -74,7 +74,7 @@ const PostList = () => {
                   history.push('/api/posts')
                   setShowModal(false)
                   }}>
-                  <PostDetails post={post} setShowModal={setShowModal}/>
+                  <PostDetails />
               </Modal>
             )}
             </Route>
