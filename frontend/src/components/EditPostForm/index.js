@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as sessionActions from "../../store/session"
 import { updatePost } from '../../store/posts';
 import { useHistory, useParams } from 'react-router-dom';
-const EditPostForm = () => {
+const EditPostForm = ({ setShowModal }) => {
   const history = useHistory();
   const {id} = useParams();
   const dispatch = useDispatch();
@@ -41,7 +41,8 @@ const EditPostForm = () => {
     }
 
     const updatedPost = await dispatch(updatePost(data))
-    console.log(updatedPost)
+
+    setShowModal(false)
 
   }
   return(
