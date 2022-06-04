@@ -44,46 +44,45 @@ const PostList = () => {
 
   return (
     <>
-    <CreatePostModal />
-    <div className="postlist-container">
-
-    <div className="postlist-header">Your next favorite thing 👇</div>
-    {posts.map((post) => {
-      return (
-        <>
-            <div className="post">
-            <img className="post-img" src={post.media} alt="img" />
-            <div className="post-details">
-
-            <NavLink key={post.id} to={`/api/posts/${post.id}`} onClick={() => {setShowModal(true)}} className="post-nav">{post.title}
-
-            <p className="post-content">{post.content}</p>
-            {/* {userId === post.userId &&
-            <div>
-            <button>delete</button>
-            </div>
-            } */}
-
-            <img className="chat-icon icon" src="https://img.icons8.com/ios-glyphs/30/undefined/chat.png" alt="chat"/>
-
-            </NavLink>
-
-            </div>
-            </div>
-          <Route path="/api/posts/:id">
-              {showModal && (
-                <Modal onClose={() => {
-                  history.push('/api/posts')
-                  setShowModal(false)
-                  }}>
-                  <PostDetails />
-              </Modal>
-            )}
-            </Route>
-
-          </>
-      );
-    })}
+    <div className="main-container">
+      <div className="postlist-container">
+      <div className="postlist-header">Your next favorite thing 👇</div>
+      {posts.map((post) => {
+        return (
+          <>
+              <div className="post">
+              <img className="post-img" src={post.media} alt="img" />
+              <div className="post-details">
+              <NavLink key={post.id} to={`/api/posts/${post.id}`} onClick={() => {setShowModal(true)}} className="post-nav">{post.title}
+              <p className="post-content">{post.content}</p>
+              {/* {userId === post.userId &&
+              <div>
+              <button>delete</button>
+              </div>
+              } */}
+              <img className="chat-icon icon" src="https://img.icons8.com/ios-glyphs/30/undefined/chat.png" alt="chat"/>
+              </NavLink>
+              </div>
+              <div className="like-btn">
+                <div className="like-btn-icon"><img src="https://img.icons8.com/external-those-icons-fill-those-icons/15/undefined/external-up-arrows-those-icons-fill-those-icons-5.png" alt="like"/></div>
+                <div className="like-btn-number">5</div>
+              </div>
+              </div>
+            <Route path="/api/posts/:id">
+                {showModal && (
+                  <Modal onClose={() => {
+                    history.push('/api/posts')
+                    setShowModal(false)
+                    }}>
+                    <PostDetails />
+                </Modal>
+              )}
+              </Route>
+            </>
+        );
+      })}
+      </div>
+      <div><img className="right-img" src="https://ph-files.imgix.net/d30cc037-a7fa-4213-8a31-294ea7d78924.png" alt="" /></div>
     </div>
     </>
   )

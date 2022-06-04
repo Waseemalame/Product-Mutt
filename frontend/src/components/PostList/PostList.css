@@ -1,8 +1,15 @@
+.main-container{
+  display: flex;
+}
 /* All Posts */
+
 .postlist-container{
-  margin-left: 170px;
+  margin-left: 140px;
   margin-top: 40px;
+  padding-right: 20px;
   position: relative;
+  max-width: 700px;
+  border-right: 1px solid rgba(128, 128, 128, 0.149);
 }
 /* Single Post */
 .post{
@@ -10,11 +17,31 @@
   /* flex-direction: column; */
   /* margin-left: 100px; */
   /* align-items: center; */
-  margin: 20px;
+  /* margin: 20px; */
+  width: 650px;
   /* text-decoration: none; */
+  animation-duration: 3s;
+  border-radius: 7px;
+  height: 80px;
+  margin-bottom: 30px;
+  padding-bottom: 90px;
+  position: relative;
+}
+.post:hover {
+  background-image: linear-gradient(to right, white, #2ebf9141);
+
+  animation: mymove 5s;
+  animation-duration: 3s;
+
+}
+@keyframes mymove {
+  from {background-image: linear-gradient(to right, white, #2ebf9141);}
+  to {background-color: linear-gradient(to right, #8360c3, #2ebf91);}
 }
 .post-nav{
   text-decoration: none;
+  line-height: 30px;
+  color: rgba(0, 0, 0, 0.871);
 }
 
 .postlist-header{
@@ -35,10 +62,9 @@
   margin-bottom: 40px;
   height: 80px;
 }
-/* .post-content{
-  text-decoration: none;
-  list-style: none;
-} */
+.post-content{
+  color: #4d4839b7;
+}
 
 .close-btn{
   position: fixed;
@@ -52,4 +78,32 @@
 .chat-icon{
   width: 18px;
 
+}
+.like-btn-icon{
+}
+.like-btn{
+
+  background-color: #f8f8ff;
+  display: flex;
+  flex-direction: column;
+  height: 66px;
+  width: 50px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid lightgray;
+  margin-left: 20px;
+  margin-top: 13px;
+  position: absolute;
+  right: 10px;
+  border-radius: 5px;
+}
+.like-btn-number{
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.right-img{
+  width: 277px;
+  margin-left: 40px;
+  margin-top: 40px;
 }
