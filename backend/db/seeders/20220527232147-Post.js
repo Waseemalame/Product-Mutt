@@ -4,6 +4,14 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
 
    return queryInterface.bulkInsert('Posts', [
+    {
+      title: 'Crayon',
+      content: 'Animate your vector illustrations with a few clicks',
+      media: 'https://ph-files.imgix.net/3bad1bf0-df4e-415d-acc1-e86d9daf0b06.gif',
+      userId: 2,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
    {
     title: 'API MAKER',
     content: 'Create your API in minutes with Notion',
