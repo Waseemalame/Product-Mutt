@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
+import CreatePostModal from '../CreatePostModal';
 import './Navigation.css';
 
 function Navigation({ isLoaded }){
@@ -26,7 +27,9 @@ function Navigation({ isLoaded }){
   return (
     <ul>
       <li className='nav-list'>
+        {/* <img src="../../../public/favicon.ico" alt="" /> */}
         <NavLink exact to="/">Home</NavLink>
+        <CreatePostModal />
         {isLoaded && sessionLinks}
       </li>
     </ul>
