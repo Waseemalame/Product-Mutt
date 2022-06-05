@@ -49,8 +49,8 @@ export const getPosts = () => async (dispatch) => {
     dispatch(load(list));
   }
 };
-export const getComments = () => async (dispatch) => {
-  const response = await fetch(`/api/posts`);
+export const getComments = (postId) => async (dispatch) => {
+  const response = await fetch(`/api/posts/${postId}/comments`);
 
 
   if (response.ok) {
