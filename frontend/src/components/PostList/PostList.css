@@ -79,28 +79,7 @@
   width: 18px;
 
 }
-.like-btn-icon{
-}
-.like-btn{
 
-  background-color: #f8f8ff;
-  display: flex;
-  flex-direction: column;
-  height: 66px;
-  width: 50px;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid lightgray;
-  margin-left: 20px;
-  margin-top: 13px;
-  position: absolute;
-  right: 10px;
-  border-radius: 5px;
-}
-.like-btn-number{
-  font-size: 12px;
-  margin-top: 5px;
-}
 
 .right-img{
   width: 277px;
