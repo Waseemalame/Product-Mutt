@@ -4,13 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as sessionActions from "../../store/session"
 import { updatePost } from '../../store/posts';
 import { useHistory, useParams } from 'react-router-dom';
-const EditPostForm = ({ setShowModal }) => {
-  const history = useHistory();
-  const {id} = useParams();
+const EditPostForm = ({ post, setShowModal }) => {
+
   const dispatch = useDispatch();
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [media, setMedia] = useState("");
+  const [title, setTitle] = useState(post.title);
+  const [content, setContent] = useState(post.content);
+  const [media, setMedia] = useState(post.media);
 
   const updateTitle = (e) => setTitle(e.target.value);
   const updateContent = (e) => setContent(e.target.value);
@@ -37,10 +36,10 @@ const EditPostForm = ({ setShowModal }) => {
       title,
       content,
       media,
-      id
+      id: post.id
     }
 
-    const updatedPost = await dispatch(updatePost(data))
+    await dispatch(updatePost(data))
 
     setShowModal(false)
 
