@@ -29,7 +29,7 @@ function Navigation({ isLoaded }){
       <li className='nav-list'>
         {/* <img src="../../../public/favicon.ico" alt="" /> */}
         <NavLink exact to="/">Home</NavLink>
-        <CreatePostModal />
+        {sessionUser ? <CreatePostModal /> : null}
         {isLoaded && sessionLinks}
       </li>
     </ul>
