@@ -2,6 +2,7 @@ import { csrfFetch, restoreCSRF } from "./csrf";
 import { ValidationError } from "../utils/validationError";
 
 import { LOAD_COMMENTS, REMOVE_COMMENT, ADD_COMMENT } from './comments';
+import { LOAD_LIKES, ADD_LIKE, REMOVE_LIKE } from "./likes";
 
 const LOAD = "posts/LOAD";
 const ADD = "posts/ADD"
@@ -55,6 +56,18 @@ export const getComments = () => async (dispatch) => {
   if (response.ok) {
 
     const list = await response.json();
+    // Data from backend, into regular action
+    dispatch(load(list));
+  }
+};
+export const getLikes = (postId) => async (dispatch) => {
+  const response = await fetch(`/api/posts/${postId}/likes`);
+
+
+  if (response.ok) {
+
+    const list = await response.json();
+
     // Data from backend, into regular action
     dispatch(load(list));
   }
@@ -174,6 +187,22 @@ const postReducer = (state = initialState, action) => {
           comments: action.comments.map((comment) => comment.id),
         },
       };
+        case LOAD_LIKES:
+      return {
+        ...state,
+        [action.postId]: {
+          ...state[action.postId],
+          likes: action.likes.map((comment) => comment.id)
+        },
+      };
+      case ADD_LIKE:
+      return {
+        ...state,
+        [action.like.postId]: {
+          ...state[action.like.postId],
+          likes: [...state[action.like.postId].likes, action.like.id],
+        },
+      };
       case REMOVE_POST:
       console.log(action.postId, 'action.post')
       const newState = { ...state };
@@ -188,12 +217,6 @@ const postReducer = (state = initialState, action) => {
         },
       };
       case REMOVE_COMMENT:
-        console.log(state)
-        console.log(action)
-        console.log('REMOVING ME!!')
-        console.log('REMOVING ME!!')
-        console.log('REMOVING ME!!')
-        console.log('REMOVING ME!!')
         return {
           ...state,
           [action.postId]: {
@@ -201,6 +224,26 @@ const postReducer = (state = initialState, action) => {
             comments: state[action.postId].comments.filter(
               (commentId) => commentId !== action.commentId
             ),
+          },
+        };
+      case REMOVE_LIKE:
+        console.log(state[action.postId].likes, 'state[action].postId')
+        // console.log(state[action.postId].likes.filter((likeId) => likeId !== action.likeId))
+        for (let i = 0; i < state[action.postId].likes.length; i++) {
+          const likeId = state[action.postId].likes[i];
+          // console.log(likeId, 'likeId')
+          // console.log(action.likeId, 'action.likeId')
+          if(likeId === action.likeId){
+            state[action.postId].likes.splice(i, 1)
+          }
+
+        }
+        console.log(state[action.postId].likes, 'state[action.postId].likes')
+        return {
+          ...state,
+          [action.postId]: {
+            ...state[action.postId],
+            likes: state[action.postId].likes.filter((likeId) => likeId !== action.likeId),
           },
         };
         default:
