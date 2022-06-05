@@ -60,7 +60,7 @@ const PostList = () => {
               </div>
               <PostsLikes post={post} />
               </div>
-            {/* <Route path="/api/posts/:id"> */}
+            <Route path={`/api/posts/${post.id}`}>
                 {showModal && (
                   <Modal onClose={() => {
                     history.push('/api/posts')
@@ -69,7 +69,7 @@ const PostList = () => {
                     <PostDetails post={post}/>
                 </Modal>
               )}
-              {/* </Route> */}
+              </Route>
             </>
         );
       })}
