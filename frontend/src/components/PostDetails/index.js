@@ -11,7 +11,7 @@ import EditPostModal from '../EditPostModal';
 import { removePost } from '../../store/posts';
 
 
-const PostDetails = ({ setShowModal }) => {
+const PostDetails = ({ post, setShowModal }) => {
 
   const param = useParams();
   // console.log(param.id, 'postId') // {} ??
@@ -34,7 +34,7 @@ const PostDetails = ({ setShowModal }) => {
     }
   })
 
-  const post = useSelector(state => state.posts[param.id]);
+  // const post = useSelector(state => state.posts[param.id]);
 
 
   const history = useHistory();
