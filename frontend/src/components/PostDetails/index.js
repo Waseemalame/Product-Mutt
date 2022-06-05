@@ -6,10 +6,10 @@ import PostsComments from '../PostsComments';
 import { getComments } from '../../store/posts';
 import EditPostForm from '../EditPostForm';
 import Fab from '../Fab';
-import './PostDetails.css'
 import EditPostModal from '../EditPostModal';
 import { removePost } from '../../store/posts';
 
+import './PostDetails.css'
 
 const PostDetails = ({ post, setShowModal }) => {
 
@@ -75,12 +75,14 @@ const PostDetails = ({ post, setShowModal }) => {
           {userId === post.userId &&
             <div>
             <EditPostModal post={post} />
-            <button onClick={async() => {
+            <button
+            className='delete-post-btn'
+            onClick={async() => {
             // setShowModal(false)
             history.push('/')
             await dispatch(removePost(post.id))
             return;
-            }}>delete</button>
+            }}>Delete Post</button>
             </div>
             }
 

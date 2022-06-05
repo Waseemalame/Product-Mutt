@@ -65,21 +65,23 @@ const CreatePostForm = ({ setShowModal }) => {
   return(
     <form className="create-post-form" onSubmit={handleSubmit}>
 
-      <div className="create-input-div">
+        <h2 className="create-post-header">Create Post</h2>
         <ul className="create-form-errors">
           {validationErrors.map((error) => (
             <li key={error}>{error}</li>
           ))}
         </ul>
-        <label>Title
-          <input
-                type="text"
-                placeholder="Title"
-                value={title}
-                onChange={updateTitle}
-                />
-        </label>
-      </div>
+      <div className="create-input-container">
+        <div className="create-input-div">
+          <label>Title
+            <input
+                  type="text"
+                  placeholder="Title"
+                  value={title}
+                  onChange={updateTitle}
+                  />
+          </label>
+        </div>
         <div className="create-input-div">
       <label>Content
           <input
@@ -100,6 +102,7 @@ const CreatePostForm = ({ setShowModal }) => {
                 />
         </label>
       </div>
+    </div>
       <button className='submit-create-btn' type="submit" disabled={validationErrors.length > 0}>Create Post</button>
     </form>
   )

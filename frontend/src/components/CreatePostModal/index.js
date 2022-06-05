@@ -7,12 +7,14 @@ function CreatePostModal() {
 
   return (
     <>
-      <button className='create-post-btn' onClick={() => setShowModal(true)}>Create Post</button>
-      {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
-          <CreatePostForm setShowModal={setShowModal} />
-        </Modal>
-      )}
+      <div className="create-form-modal-container">
+        <button className='create-post-btn' onClick={() => setShowModal(true)}>Create Post</button>
+        {showModal && (
+          <Modal onClose={() => setShowModal(false)}>
+            <CreatePostForm setShowModal={setShowModal} />
+          </Modal>
+        )}
+      </div>
     </>
   );
 }

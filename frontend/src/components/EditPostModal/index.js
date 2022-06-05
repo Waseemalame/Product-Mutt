@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import EditPostForm from '../EditPostForm';
 
+import './EditPostModal.css'
 function EditPostModal({ post }) {
   const [showModal, setShowModal] = useState(false);
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Edit</button>
+      <button className='edit-post-btn' onClick={() => setShowModal(true)}>Edit Post</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <EditPostForm post={post} setShowModal={setShowModal} />

@@ -6,6 +6,8 @@ function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
 
+  const [showDropDown, setShowDropDown] = useState(false)
+
   const openMenu = () => {
     if (showMenu) return;
     setShowMenu(true);
@@ -30,18 +32,32 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
-      </button>
-      {showMenu && (
-        <ul className="profile-dropdown">
-          <li>{user.username}</li>
-          <li>{user.email}</li>
-          <li>
-            <button className="logout-btn" onClick={logout}>Log Out</button>
-          </li>
-        </ul>
-      )}
+      <div
+      // onMouseOut={() => setShowMenu(false)}
+      className="profile-container">
+        <button
+        onMouseOver={() => setShowMenu(true)}
+
+         onClick={openMenu}>
+        {/* <button onMouseOver={() => setShowDropdown(true)} onClick={openMenu}> */}
+          {/* <i className="fas fa-user-circle" /> */}
+          <i class="fa-solid fa-circle-user"></i>
+        </button>
+        {showMenu && (
+          <ul
+          // onMouseOut={() => setShowMenu(false)}
+           className="profile-dropdown">
+            <li>{user.username}</li>
+            <li>{user.email}</li>
+            <li>
+              <button className="logout-btn" onClick={logout}>Log Out</button>
+            </li>
+          </ul>
+        )}
+        {/* {showDropDown && (
+          // <div className="drop-down-content">hello</div>
+        )} */}
+      </div>
     </>
   );
 }

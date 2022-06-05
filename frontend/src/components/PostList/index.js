@@ -80,7 +80,10 @@ const PostList = () => {
         );
       })}
       </div>
-      <div><img className="right-img" src="https://ph-files.imgix.net/d30cc037-a7fa-4213-8a31-294ea7d78924.png" alt="" /></div>
+      <div>
+        <img className="right-img" src="https://ph-files.imgix.net/d30cc037-a7fa-4213-8a31-294ea7d78924.png" alt="" />
+        <p className="right-img-text">Above is an image and is not a clickable link</p>
+      </div>
     </div>
     </>
   )

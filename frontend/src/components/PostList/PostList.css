@@ -86,3 +86,11 @@
   margin-left: 40px;
   margin-top: 40px;
 }
+.right-img:hover{
+
+}
+.right-img-text{
+  font-size: 12px;
+  margin-left: 70.9px;
+  color: rgba(0, 0, 0, 0.852);
+}
