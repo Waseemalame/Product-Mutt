@@ -74,7 +74,7 @@ const PostDetails = ({ post, setShowModal }) => {
             } */}
           {userId === post.userId &&
             <div>
-            <EditPostModal />
+            <EditPostModal post={post} />
             <button onClick={async() => {
             // setShowModal(false)
             history.push('/')
