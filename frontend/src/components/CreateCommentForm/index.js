@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createComment } from "../../store/comments";
 
+import './CreateCommentForm.css'
 
 const CreateCommentForm = ({ post, setShowCommentForm }) => {
   const [commentContent, setCommentContent] = useState("");
@@ -39,8 +40,10 @@ const CreateCommentForm = ({ post, setShowCommentForm }) => {
                   placeholder="Write a comment"
                   value={commentContent}
                   onChange={updateCommentContent}
+                  className="create-comment-input"
                   />
-        <button>Submit</button>
+        <button className="create-comment-submit">Submit</button>
+        <button onClick={() => setShowCommentForm(false)} className="create-comment-cancel">Cancel</button>
       </form>
     </>
 
