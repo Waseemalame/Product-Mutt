@@ -1,42 +1,42 @@
-'use strict';
+// 'use strict';
 
-module.exports = {
-  up: (queryInterface, Sequelize) => {
-    /*
-      Add altering commands here.
-      Return a promise to correctly handle asynchronicity.
+// module.exports = {
+//   up: (queryInterface, Sequelize) => {
+//     /*
+//       Add altering commands here.
+//       Return a promise to correctly handle asynchronicity.
 
-      Example:
-      */
-   return queryInterface.bulkInsert('Likes', [
-    {
-    userId: 2,
-    postId: 1,
-    createdAt: new Date(),
-    updatedAt: new Date()
-   },
-    {
-    userId: 1,
-    postId: 2,
-    createdAt: new Date(),
-    updatedAt: new Date()
-   },
-    {
-    userId: 3,
-    postId: 1,
-    createdAt: new Date(),
-    updatedAt: new Date()
-   },
-  ], {});
-  },
+//       Example:
+//       */
+//    return queryInterface.bulkInsert('Likes', [
+//     {
+//     userId: 2,
+//     postId: 1,
+//     createdAt: new Date(),
+//     updatedAt: new Date()
+//    },
+//     {
+//     userId: 1,
+//     postId: 2,
+//     createdAt: new Date(),
+//     updatedAt: new Date()
+//    },
+//     {
+//     userId: 3,
+//     postId: 1,
+//     createdAt: new Date(),
+//     updatedAt: new Date()
+//    },
+//   ], {});
+//   },
 
-  down: (queryInterface, Sequelize) => {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
+//   down: (queryInterface, Sequelize) => {
+//     /*
+//       Add reverting commands here.
+//       Return a promise to correctly handle asynchronicity.
 
-      Example:
-      */
-   return queryInterface.bulkDelete('Likes', null, {});
-  }
-};
+//       Example:
+//       */
+//    return queryInterface.bulkDelete('Likes', null, {});
+//   }
+// };
