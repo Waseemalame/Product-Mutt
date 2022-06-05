@@ -21,3 +21,8 @@
   text-align: center;
   line-height: 40px;
 }
+.logout-btn{
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
