@@ -2,7 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const {requireAuth} = require('../../utils/auth')
 const postRepository = require('../../db/post-repository')
-const { Post, Comment, User } = require('../../db/models');
+const { Post, Comment, User, Like } = require('../../db/models');
 const router = express.Router();
   /* GET ALL POSTS */
 router.get('/', asyncHandler(async function(_req, res) {
@@ -101,4 +101,57 @@ router.put('/:id', requireAuth, asyncHandler(async function (req, res) {
     //   return res.json(post);
     //   })
     // );
+
+  //   /* Get PostsLikes */
+  //   router.get('/:id/likes', asyncHandler(async function(req, res) {
+  //     // const userId = req.user.id;
+  //     const post = await postRepository.one(req.params.id);
+  //     const postId = post.id;
+  //     const likes = await Like.findAll({
+  //       include: User,
+  //       where: {
+  //         postId
+  //       }
+  //     });
+  //     return res.json(likes);
+  //   }));
+
+  //   /* Get single like from post */
+  //   router.get('/postId:/likes/:businessId', asyncHandler(async (req, res) => {
+  //     const {businessId} = req.params
+  //     const businessLikes = await Like.findAll({where: {businessId}})
+
+  //     res.json(businessLikes)
+  // }))
+
+  //   router.post('/:id/likes/', requireAuth, asyncHandler(async function (req, res) {
+  //     const {
+  //       userId,
+  //       postId
+  //      } = req.body;
+  //      const likes = await Like.findAll({
+  //        include: User,
+  //        where: {
+  //          postId
+  //        }
+  //      })
+  //     const like = await Like.create({
+  //       userId,
+  //       postId
+  //     })
+  //     const newLike = await Like.findByPk(like.id, {include: User})
+
+  //   return res.json(newLike);
+
+  //   }))
+  //   router.delete('/:postId/likes/:id', requireAuth, asyncHandler(async function (req, res) {
+
+
+  //     const {id} = req.params;
+  //     const like = await Like.findByPk(id);
+  //     await like.destroy();
+  //     return res.json({id});
+  //   })
+  //   );
+
   module.exports = router;
