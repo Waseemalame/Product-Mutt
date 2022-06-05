@@ -1,0 +1,31 @@
+.like-btn-icon{
+}
+.like-btn{
+
+  background-color: #f8f8ff;
+  display: flex;
+  flex-direction: column;
+  height: 66px;
+  width: 50px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid lightgray;
+  margin-left: 20px;
+  margin-top: 13px;
+  position: absolute;
+  right: 10px;
+  border-radius: 5px;
+  animation: ease-out;
+}
+.like-btn:hover{
+  /* padding-bottom: 10px; */
+  /* height: 60px; */
+  /* padding-top: 10px; */
+  background-color: #E5F4F7;
+  /* background-color: rgba(46, 191, 145, 0.282); */
+  border: 1px solid gold;
+}
+.like-btn-number{
+  font-size: 12px;
+  margin-top: 5px;
+}
