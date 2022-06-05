@@ -2,7 +2,7 @@ import { useDispatch, useSelector, useStore } from "react-redux"
 import { useEffect, useState } from "react";
 import { getPosts } from "../../store/posts";
 import { NavLink, Route, useHistory, useParams } from 'react-router-dom'
-
+import PostsLikes from "../PostsLikes";
 import { updatePost } from "../../store/posts";
 import { removePost } from "../../store/posts";
 import EditPostForm from "../EditPostForm";
@@ -63,10 +63,11 @@ const PostList = () => {
               <img className="chat-icon icon" src="https://img.icons8.com/ios-glyphs/30/undefined/chat.png" alt="chat"/>
               </NavLink>
               </div>
-              <div className="like-btn">
+              {/* <div className="like-btn">
                 <div className="like-btn-icon"><img src="https://img.icons8.com/external-those-icons-fill-those-icons/15/undefined/external-up-arrows-those-icons-fill-those-icons-5.png" alt="like"/></div>
-                <div className="like-btn-number">5</div>
-              </div>
+                <div className="like-btn-number"><PostsLikes post={post} /></div>
+              </div> */}
+              <PostsLikes post={post} />
               </div>
             <Route path="/api/posts/:id">
                 {showModal && (
