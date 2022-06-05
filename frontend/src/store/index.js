@@ -4,12 +4,14 @@ import { restoreCSRF, csrfFetch } from './csrf';
 import sessionReducer from './session';
 import posts from './posts';
 import comments from './comments'
+import likes from './likes'
 import * as sessionActions from './session';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   posts,
-  comments
+  comments,
+  likes
 });
 
 let enhancer;
