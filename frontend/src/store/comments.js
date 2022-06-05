@@ -40,10 +40,7 @@ export const getComments = (postId) => async (dispatch) => {
 };
 
 export const createComment = (data) => async (dispatch) => {
-  console.log('INSIDE CREATE  COMMENT THUNK ACTION CREATOR')
-  console.log('INSIDE CREATE  COMMENT THUNK ACTION CREATOR')
-  console.log('INSIDE CREATE  COMMENT THUNK ACTION CREATOR')
-  console.log('INSIDE CREATE  COMMENT THUNK ACTION CREATOR')
+
 
   const response = await csrfFetch(`/api/posts/${data.postId}/comments`, {
     method: 'POST',
@@ -79,10 +76,6 @@ export const deleteComment = (commentId, postId) => async dispatch => {
   if (response.ok) {
     const { id: deletedCommentId } = await response.json();
     console.log(deletedCommentId)
-    console.log('STORE!!!!!!!!!!!!!')
-    console.log('STORE!!!!!!!!!!!!!')
-    console.log('STORE!!!!!!!!!!!!!')
-    console.log('STORE!!!!!!!!!!!!!')
     dispatch(remove(deletedCommentId, postId));
 
   }
