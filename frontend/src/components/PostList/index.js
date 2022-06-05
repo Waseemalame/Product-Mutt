@@ -12,6 +12,7 @@ import CreatePostForm from "../CreatePostForm";
 import EditPostModal from "../EditPostModal";
 import { Modal } from "../../context/Modal";
 import CreatePostModal from "../CreatePostModal";
+import PostDetailsModal from "../PostDetailsModal";
 
 const PostList = () => {
   const id = useParams();
@@ -61,14 +62,19 @@ const PostList = () => {
               <PostsLikes post={post} />
               </div>
             <Route path={`/api/posts/${post.id}`}>
-                {showModal && (
+                {/* {showModal && (
                   <Modal onClose={() => {
                     history.push('/api/posts')
                     setShowModal(false)
                     }}>
                     <PostDetails post={post}/>
                 </Modal>
-              )}
+              )} */}
+              {showModal && (
+                <PostDetailsModal setShowModal={setShowModal} showModal={showModal} post={post}/>
+
+              )
+              }
               </Route>
             </>
         );
