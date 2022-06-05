@@ -20,11 +20,11 @@ module.exports = {
       },
       firstName: {
         type: Sequelize.STRING(20),
-        allowNull: false,
+        // allowNull: false,
       },
       lastName: {
         type: Sequelize.STRING(20),
-        allowNull: false,
+        // allowNull: false,
       },
       profileImg: {
         type: Sequelize.STRING,
