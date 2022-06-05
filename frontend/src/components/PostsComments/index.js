@@ -31,7 +31,9 @@ const PostsComments = ({ post, setEditItemId }) => {
 
   return (
     <>
-      <button onClick={() => setShowCommentForm(true)}>Reply</button>
+      <button className="chatIcon" onClick={() => setShowCommentForm(true)}>
+      <img src="https://img.icons8.com/ios-glyphs/30/undefined/chat.png" alt="chat"/>
+      </button>
       {showCommentForm ? (
         <CreateCommentForm post={post} setShowCommentForm={setShowCommentForm}/>
       ) : ''}
@@ -41,17 +43,17 @@ const PostsComments = ({ post, setEditItemId }) => {
         {comment ? (
           <>
           <div className="comment-header">
-            <img className="profile-img" src={comment.User.profileImg} alt="" />
-            <div>{comment.User.firstName}</div>
-            <div>{comment.User.lastName}</div>
+            <img className="profile-img" src='https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg' alt="" />
+            {/* <div>{comment.User.firstName}</div> */}
+            {/* <div>{comment.User.lastName}</div> */}
             <div>{comment.User.username}</div>
           </div>
-            <div className="comment-content">{comment.content}</div>
+            <div className="comment-content">{comment.content}
           {userId === comment.User.id ? (
           <>
-          <button onClick={() => setShowEditForm(true)} className="edit-btn">
+          {/* <button onClick={() => setShowEditForm(true)} className="edit-btn">
           <img src="https://img.icons8.com/material-outlined/24/undefined/edit--v1.png" alt="edit"/>
-          </button>
+          </button> */}
           <button className="delete-btn" onClick={async() => {
             console.log('WHATSUP!')
             await dispatch(deleteComment(comment.id, post.id))
@@ -60,6 +62,7 @@ const PostsComments = ({ post, setEditItemId }) => {
           </button>
           </>
         ) : ''}
+        </div>
           </>
         ) : ''}
 

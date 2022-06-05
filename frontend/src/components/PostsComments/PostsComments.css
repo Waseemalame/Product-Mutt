@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   padding: 10px;
+  position: relative;
 }
 .comment-header > *{
   margin-left: 10px;
@@ -13,9 +14,22 @@
 
 .comment-content{
   margin-left: 70px;
+  color: rgba(0, 0, 0, 0.807);
 }
 
 .delete-btn{
   background-color: transparent;
   border: none;
+  /* position: absolute; */
+  /* right: 10px; */
+  /* top: 10px; */
+}
+.single-comment{
+  background-color: black;
+}
+.chatIcon{
+  background-color: transparent;
+  border: none;
+  font-size: 10px;
+  cursor: pointer;
 }
