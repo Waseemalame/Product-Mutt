@@ -6,6 +6,8 @@ https://product-mutt.herokuapp.com/
 
 ![image](https://user-images.githubusercontent.com/73668892/172122535-9807974b-acc5-4b49-8615-c8fd90247984.png)
 
+![image](https://user-images.githubusercontent.com/73668892/172125613-dabd4d0f-6ed5-4296-a4c7-85b398af63e1.png)
+
 
 Downloading the App
 Clone this repository using `git clone git@github.com:Waseemalame/Product-Mutt.git`
