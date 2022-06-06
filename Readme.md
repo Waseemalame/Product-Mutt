@@ -4,11 +4,8 @@ Product-Mutt is a single-page application clone of ProductHunt, where users can 
 Live Link:
 https://product-mutt.herokuapp.com/
 
-![image](https://user-images.githubusercontent.com/73668892/172090235-65d1f29c-1d74-40de-946d-486de3d94578.png)
+![image](https://user-images.githubusercontent.com/73668892/172122535-9807974b-acc5-4b49-8615-c8fd90247984.png)
 
-![image](https://user-images.githubusercontent.com/73668892/172090279-107c4ce8-4a55-44f9-aa02-24d81bbab956.png)
-
-![image](https://user-images.githubusercontent.com/73668892/172090332-a2e6b891-ccfa-46cd-acc6-525d3f54c930.png)
 
 Downloading the App
 Clone this repository git clone git@github.com:Waseemalame/Product-Mutt.git
