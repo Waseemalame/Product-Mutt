@@ -84,6 +84,48 @@ const PostList = () => {
         <img className="right-img" src="https://ph-files.imgix.net/d30cc037-a7fa-4213-8a31-294ea7d78924.png" alt="" />
         <p className="right-img-text">Above is an image and is not a clickable link</p>
       </div>
+      <div className="links">
+        <a href="https://github.com/Waseemalame">
+        <img src="https://img.icons8.com/material-outlined/24/undefined/github.png" alt=''/>
+        </a>
+        <a href="https://www.linkedin.com/in/waseemalame/">
+        <img src="https://img.icons8.com/color/25/undefined/linkedin-circled--v1.png" alt=''/>
+        </a>
+      </div>
+      <div className="libraries-icons">
+      <div className="top-icon-section">
+        <div className="one-icon">
+          <img src="https://img.icons8.com/office/25/undefined/react.png" alt=""/>
+          <p>React</p>
+        </div>
+        <div className="one-icon">
+          <img src="https://img.icons8.com/external-flat-juicy-fish/25/undefined/external-sql-coding-and-development-flat-flat-juicy-fish.png" alt=''/>
+          <p>SQL</p>
+        </div>
+        <div className="one-icon">
+          <img src="https://img.icons8.com/color/25/undefined/redux.png" alt=""/>
+          <p>Redux</p>
+        </div>
+        <div className="one-icon">
+          <img src="https://img.icons8.com/color/25/undefined/postgreesql.png" alt=""/>
+          <p>Postgres</p>
+        </div>
+      </div>
+      <div className="bottom-icon-section">
+        <div className="one-icon">
+        <img src="https://img.icons8.com/color/25/undefined/html-5--v1.png" alt=""/>
+          <p>HTML</p>
+        </div>
+        <div className="one-icon">
+        <img src="https://img.icons8.com/color/25/undefined/javascript--v1.png" alt=""/>
+          <p>Javascript</p>
+        </div>
+        <div className="one-icon">
+        <img src="https://img.icons8.com/color/25/undefined/css3.png" alt=""/>
+          <p>CSS</p>
+        </div>
+      </div>
+      </div>
     </div>
     </>
   )

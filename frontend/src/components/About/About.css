@@ -1,7 +1,8 @@
 .about-container{
+  background-color: #f8f8ff;
 
   width: 500px;
-  height: 500px;
+  height: 560px;
   text-align: center;
   /* margin-top: 20px; */
   padding: 20px;

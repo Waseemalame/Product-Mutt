@@ -61,9 +61,15 @@
 .post-details{
   margin-bottom: 40px;
   height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .post-content{
   color: #4d4839b7;
+  overflow-wrap: normal;
+  width: 500px;
+  line-height: 16px;
 }
 
 .close-btn{
@@ -91,6 +97,32 @@
 }
 .right-img-text{
   font-size: 12px;
-  margin-left: 70.9px;
+  margin-left: 46px;
   color: rgba(0, 0, 0, 0.852);
+}
+
+.links{
+  position: absolute;
+  left: 960px;
+  bottom: 200px;
+}
+.libraries-icons{
+  display: flex;
+  flex-direction: column;
+  height: 25px;
+  position: absolute;
+  left: 855px;
+  top: 400px;
+  text-align: center;
+}
+.one-icon{
+  margin: 10px;
+}
+.top-icon-section{
+  display: flex;
+}
+.bottom-icon-section{
+  display: flex;
+  margin-left: 25px;
+  margin-top: 20px;
 }
