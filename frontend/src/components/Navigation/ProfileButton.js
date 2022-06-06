@@ -41,7 +41,7 @@ function ProfileButton({ user }) {
          onClick={openMenu}>
         {/* <button onMouseOver={() => setShowDropdown(true)} onClick={openMenu}> */}
           {/* <i className="fas fa-user-circle" /> */}
-          <i class="fa-solid fa-circle-user"></i>
+          <i className="fa-solid fa-circle-user"></i>
         </button>
         {showMenu && (
           <ul
