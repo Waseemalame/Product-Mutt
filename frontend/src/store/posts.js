@@ -16,7 +16,6 @@ const load = (list) => ({
 });
 
 const addOnePost = (post) => {
-  // console.log('IN ADD_ONE_POST ACTION - POST -> ', post)
   return {
     type: ADD,
     post: post,
@@ -157,7 +156,7 @@ const postReducer = (state = initialState, action) => {
       return {
         ...allPosts,
         ...state,
-        // list: action.list,
+
       };
     case ADD:
 
@@ -204,7 +203,6 @@ const postReducer = (state = initialState, action) => {
         },
       };
       case REMOVE_POST:
-      console.log(action.postId, 'action.post')
       const newState = { ...state };
       delete newState[action.postId];
       return newState;
@@ -227,18 +225,14 @@ const postReducer = (state = initialState, action) => {
           },
         };
       case REMOVE_LIKE:
-        console.log(state[action.postId].likes, 'state[action].postId')
-        // console.log(state[action.postId].likes.filter((likeId) => likeId !== action.likeId))
         for (let i = 0; i < state[action.postId].likes.length; i++) {
           const likeId = state[action.postId].likes[i];
-          // console.log(likeId, 'likeId')
-          // console.log(action.likeId, 'action.likeId')
+
           if(likeId === action.likeId){
             state[action.postId].likes.splice(i, 1)
           }
 
         }
-        console.log(state[action.postId].likes, 'state[action.postId].likes')
         return {
           ...state,
           [action.postId]: {
