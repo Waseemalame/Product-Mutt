@@ -8,7 +8,7 @@ https://product-mutt.herokuapp.com/
 
 
 Downloading the App
-Clone this repository git clone git@github.com:Waseemalame/Product-Mutt.git
+Clone this repository using `git clone git@github.com:Waseemalame/Product-Mutt.git`
 
 Install all packages in both the frontend and backend folders npm install
 
