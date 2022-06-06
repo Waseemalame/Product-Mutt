@@ -12,9 +12,7 @@ const PostsComments = ({ post, setEditItemId }) => {
     if (!post.comments) return null;
 
     return post.comments.map(commentId => state.comments[commentId]);
-    // console.log(Object.values(state.posts)[post.id - 1], 'heiuheihei')
-    // console.log(state.posts[post.id], 'state.posts', post.id)
-    // return Object.values(state.posts)[post.id - 1]
+
   });
   const userId = useSelector(state => {
     if(state.session.user){
@@ -22,7 +20,6 @@ const PostsComments = ({ post, setEditItemId }) => {
     }
   })
 
-  // const comments = useSelector(state => console.log(state))
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getComments(post.id));
@@ -44,16 +41,13 @@ const PostsComments = ({ post, setEditItemId }) => {
           <>
           <div className="comment-header">
             <img className="profile-img" src='https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg' alt="" />
-            {/* <div>{comment.User.firstName}</div> */}
-            {/* <div>{comment.User.lastName}</div> */}
+
             <div>{comment.User.username}</div>
           </div>
             <div className="comment-content">{comment.content}
           {userId === comment.User.id ? (
           <>
-          {/* <button onClick={() => setShowEditForm(true)} className="edit-btn">
-          <img src="https://img.icons8.com/material-outlined/24/undefined/edit--v1.png" alt="edit"/>
-          </button> */}
+
           <button className="delete-btn" onClick={async() => {
             console.log('WHATSUP!')
             await dispatch(deleteComment(comment.id, post.id))
@@ -65,7 +59,6 @@ const PostsComments = ({ post, setEditItemId }) => {
         </div>
           </>
         ) : ''}
-
 
         </>
 )) : ''
