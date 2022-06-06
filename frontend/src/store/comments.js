@@ -75,7 +75,6 @@ export const deleteComment = (commentId, postId) => async dispatch => {
 
   if (response.ok) {
     const { id: deletedCommentId } = await response.json();
-    console.log(deletedCommentId)
     dispatch(remove(deletedCommentId, postId));
 
   }
@@ -87,12 +86,9 @@ const commentsReducer = (state = initialState, action) => {
   switch (action.type) {
 
     case LOAD_COMMENTS:
-      // console.log(action.comments, 'action.comments')
       const newComments = {};
       action.comments.forEach(comment => {
-        // console.log(comment.id, 'comment!!!')
         newComments[comment.id] = comment;
-        // console.log(newComments, 'newComments')
       })
       return {
         ...state,

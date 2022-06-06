@@ -42,16 +42,6 @@ const getLikes = likes => {
   }
 }
 
-
-// export const getLikes = (postId) => async (dispatch) => {
-//   // console.log('INSIDE THUNK ')
-//   const response = await fetch(`/api/posts/${postId}/likes`);
-
-//   if (response.ok) {
-//     const likes = await response.json();
-//     dispatch(load(likes, postId));
-//   }
-// };
 export const getLikeThunk = postId => async dispatch =>  {
   const response = await csrfFetch(`/api/likes/${postId}`)
   const likes = await response.json()
@@ -67,33 +57,6 @@ export const addLikeThunk = like => async dispatch =>  {
   dispatch(createLike(newLike))
 }
 
-// export const createLike = (data) => async (dispatch) => {
-
-
-//   const response = await csrfFetch(`/api/posts/${data.postId}/likes`, {
-//     method: 'POST',
-//     body: JSON.stringify(data)
-//   });
-
-
-//     const newLike = await response.json()
-//     dispatch(add(newLike))
-//     return newLike
-
-// }
-
-// export const deleteLike = (likeId, postId) => async dispatch => {
-//   const response = await csrfFetch(`/api/posts/${postId}/likes/${likeId}`, {
-//     method: 'delete',
-//   });
-
-//   if (response.ok) {
-//     const { id: deletedLikeId } = await response.json();
-//     console.log(deletedLikeId)
-//     dispatch(remove(deletedLikeId, postId));
-
-//   }
-// };
 export const deleteLikeThunk = like => async dispatch =>  {
   const response = await csrfFetch('/api/likes', {
       method: "DELETE",
@@ -109,14 +72,10 @@ const likesReducer = (state = initialState, action) => {
   switch (action.type) {
 
     case GET_LIKES:
-      // console.log(action.comments, 'action.comments')
       const newLikes = {};
       action.likes.forEach(like => {
-        // console.log(comment.id, 'comment!!!')
         newLikes[like.id] = like;
-        // console.log(newLikes, 'newLikes')
       })
-      // console.log(newLikes)
       return {
         ...state,
         ...newLikes

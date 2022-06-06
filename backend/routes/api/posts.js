@@ -66,7 +66,6 @@ router.put('/:id', requireAuth, asyncHandler(async function (req, res) {
         userId,
         postId
        } = req.body;
-       console.log(req.body)
       const comment = await Comment.create({
         content: commentContent,
         userId,

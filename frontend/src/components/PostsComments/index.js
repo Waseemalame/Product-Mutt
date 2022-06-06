@@ -49,7 +49,6 @@ const PostsComments = ({ post, setEditItemId }) => {
           <>
 
           <button className="delete-btn" onClick={async() => {
-            console.log('WHATSUP!')
             await dispatch(deleteComment(comment.id, post.id))
           }}>
             <img src="https://img.icons8.com/material-outlined/24/undefined/trash--v1.png" alt="delete"/>
