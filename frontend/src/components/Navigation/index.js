@@ -5,6 +5,7 @@ import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import CreatePostModal from '../CreatePostModal';
 import './Navigation.css';
+import AboutModal from '../AboutModal';
 
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
@@ -28,7 +29,9 @@ function Navigation({ isLoaded }){
     <ul>
       <li className='nav-list'>
         {/* <img src="../../../public/favicon.ico" alt="" /> */}
-        <NavLink exact to="/">Home</NavLink>
+        <img className='product-hunt-logo' src="https://cdn-images-1.medium.com/fit/c/72/72/1*rrk0qqmHWx-jbaoC5MZlHA.png" alt="" />
+        <NavLink className="home-link" exact to="/">Home</NavLink>
+        <AboutModal />
         {sessionUser ? <CreatePostModal /> : null}
         {isLoaded && sessionLinks}
       </li>
