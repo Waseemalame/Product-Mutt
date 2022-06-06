@@ -44,7 +44,7 @@ function LoginForm() {
           required
         />
       </label>
-      <button type="submit">Log In</button>
+      <button className="nav-login-btn" type="submit">Log In</button>
     </form>
   );
 }
