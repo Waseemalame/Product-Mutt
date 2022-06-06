@@ -10,7 +10,7 @@ function PostDetailsModal({ post, showModal, setShowModal }) {
     <>
       <button className='create-post-btn' onClick={() => setShowModal(true)}>Create Post</button>
       {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
+        <Modal className='post-details-modal' onClose={() => setShowModal(false)}>
           <PostDetails post={post} setShowModal={setShowModal} />
         </Modal>
       )}
